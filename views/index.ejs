@@ -1,0 +1,28 @@
+<%- include ../partials/header %> <%- include ../partials/navbar %>
+
+<div class="container-fluid">
+    <!-- Flash messages -->
+    <% if(successMsg || errorMsg) {%>
+    <div class="row mt-3 mb-3">
+        <div class="col-md-12 m-auto">
+            <% if (successMsg) { %>
+            <div id="success" class="alert alert-success">
+                <%= successMsg %>
+            </div>
+            <% } else { %>
+            <div id="success" class="alert alert-success d-none"></div>
+            <% } %>
+        </div>
+        <div class="col-md-12 m-auto">
+            <% if (errorMsg) { %>
+            <div id="error" class="alert alert-danger">
+                <%= errorMsg %>
+            </div>
+            <% } else { %>
+            <div id="error" class="alert alert-danger d-none"></div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+
+</div>
