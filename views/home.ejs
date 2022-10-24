@@ -1,33 +1,57 @@
 <%- include ../partials/header %>
-    <%- include ../partials/categories-navbar%>
+<%- include ../partials/navbar%>
 
-        <!-- Top Carousel -->
-        <div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true"
-            data-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="First slide" />
-                </div>
-                <div class="carousel-item active" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Second slide" />
-                </div>
-                <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/straw-bag-slide.jpeg" alt="Third slide" />
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+<!-- Top Carousel -->
+<div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true" data-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item" data-bs-interval="2500">
+            <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="First slide" />
         </div>
-        <%- include ../partials/footer %>
+        <div class="carousel-item active" data-bs-interval="2500">
+            <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Second slide" />
+        </div>
+        <div class="carousel-item" data-bs-interval="2500">
+            <img class="d-block w-100" src="/public/assets/straw-bag-slide.jpeg" alt="Third slide" />
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Store's categories section -->
+<div class="container">
+    <h3 class="text-center mb-3 mt-4">Store's Categories</h3>
+    <% if (categories) { %>
+    <div class="row text-center m-auto">
+        <% for(let i=0; i<3; i++){ %>
+        <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+            <a class="title-link" href="/products/<%=categories[i].slug%>">
+                <img src="images/dept<%=i%>.jpg" alt="category" class="circle-img" />
+                <h4 class="mb-3 mt-3"><%=categories[i].title%></h4>
+            </a>
+        </div>
+        <%} %>
+        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+            <a href="/products">
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <%}%>
+</div>
+
+<hr class="gradient-style" />
+
+<%- include ../partials/footer %>
