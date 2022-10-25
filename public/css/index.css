@@ -148,6 +148,15 @@
     background-position: 100% center;
   }
 
+/*  CATEGORY CROUSEL */
+#catCarousel .carousel-item {
+    display: inline-flex;
+    visibility: hidden;
+}
+
+#catCarousel .active {
+    visibility: visible;
+}
 
 /* HOME PAGE */
   
@@ -179,6 +188,19 @@
 .fa-chevron-circle-right:hover {
   transform: scale(1.4);
 }
+
+.fa-chevron-circle-left {
+    font-size: 50px;
+    color: var(--dark-blue);
+    margin-top: 1.5em;
+    border-radius: 55%;
+    box-shadow: 5px 5px 5px var(--dark-gray);
+    transition: all 0.2s linear;
+  }
+  
+  .fa-chevron-circle-left:hover {
+    transform: scale(1.4);
+  }
 
 hr.gradient-style {
   border: 0;
