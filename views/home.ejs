@@ -1,57 +1,90 @@
 <%- include ../partials/header %>
-<%- include ../partials/navbar%>
+    <%- include ../partials/navbar%>
 
-<!-- Top Carousel -->
-<div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true" data-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-            aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item" data-bs-interval="2500">
-            <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="First slide" />
+        <!-- Top Carousel -->
+        <div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true"
+            data-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2500">
+                    <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="First slide" />
+                </div>
+                <div class="carousel-item" data-bs-interval="2500">
+                    <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Second slide" />
+                </div>
+                <div class="carousel-item" data-bs-interval="2500">
+                    <img class="d-block w-100" src="/public/assets/straw-bag-slide.jpeg" alt="Third slide" />
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="carousel-item active" data-bs-interval="2500">
-            <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Second slide" />
-        </div>
-        <div class="carousel-item" data-bs-interval="2500">
-            <img class="d-block w-100" src="/public/assets/straw-bag-slide.jpeg" alt="Third slide" />
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 
-<!-- Store's categories section -->
-<div class="container">
-    <h3 class="text-center mb-3 mt-4">Store's Categories</h3>
-    <% if (categories) { %>
-    <div class="row text-center m-auto">
-        <% for(let i=0; i<3; i++){ %>
-        <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
-            <a class="title-link" href="/products/<%=categories[i].slug%>">
-                <img src="images/dept<%=i%>.jpg" alt="category" class="circle-img" />
-                <h4 class="mb-3 mt-3"><%=categories[i].title%></h4>
-            </a>
-        </div>
-        <%} %>
-        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
-            <a href="/products">
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-    <%}%>
-</div>
+        <!-- Store's categories section -->
+        <div class="container">
+            <h3 class="text-center mb-3 mt-4">Store's Categories</h3>
+            <div id="catCarousel" class="carousel slide mb-3 mt-0 pt-0" data-bs-ride="true" data-ride="carousel">
+                <div class="carousel-inner">
+                    <% if (categories) { %>
+                        <% var remain=3; %>
+                        <% for(let i=0; i<categories.length; i+= remain){ %>
+                            <div <% if (i == 0) {%>
+                                class="carousel-item justify-content-center active" data-bs-interval="100000000">
+                            <%} else {%>
+                                class="carousel-item justify-content-center" data-bs-interval="100000000">
+                            <%}%>
+                            <%for(var j = 0; j < remain ; j++) {%>
+                                <% let x = i + j %>
+                                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                                    <a class="title-link" href="/products/<%=categories[i].slug%>">
+                                      <img src="assets/images/dept<%=i%>.jpg" alt="category" class="circle-img" />
+                                      <h4 class="mb-3 mt-3"><%=categories[x].title%></h4>
+                                    </a>
+                                </div>
+                            <%}%> <!--end j for-->
+                            <%if(data.a.length - i < 3) {%>
+                                <%remain = data.a.length - i%>
+                            <%} %> <!--end if-->
+                        <%} %> <!-- end i for-->
+                    <%}%> <!--end if-->
+                </div> <!-- CAROUSEL INNER END-->
 
-<hr class="gradient-style" />
+                <!-- CAROUSEL CONTROLS -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true">
+                        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+                            <a href="#">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
 
-<%- include ../partials/footer %>
+                <button class="carousel-control-next" type="button" data-bs-target="#catCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true">
+                        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+                            <a href="#">
+                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div> <!-- CAT CAROUSEL END-->
+        </div> <!-- CONTAINER END-->
+
+        <hr class="gradient-style" />
+
+        <%- include ../partials/footer %>
