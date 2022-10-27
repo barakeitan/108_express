@@ -3,32 +3,36 @@
 
         <!-- Top Carousel -->
         <div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true"
-            data-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          data-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+              aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/laptops-slide.png" alt="Laptops" />
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="First slide" />
-                </div>
-                <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Second slide" />
-                </div>
-                <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/straw-bag-slide.jpeg" alt="Third slide" />
-                </div>
+            <div class="carousel-item" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="Backpack" />
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Large handbags" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/office-supplies-slide2.png" alt="Office supplies" />
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
 
         <!-- Store's categories section -->
@@ -47,8 +51,8 @@
                             <%for(var j = 0; j < remain ; j++) {%>
                                 <% let x = i + j %>
                                 <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
-                                    <a class="title-link" href="/products/<%=categories[i].slug%>">
-                                      <img src="assets/images/dept<%=i%>.jpg" alt="category" class="circle-img" />
+                                    <a class="title-link" href="/products/<%=categories[x].slug%>">
+                                      <img src="assets/categories/<%=categories[x].slug%>.jpg" alt="category" class="circle-img" />
                                       <h4 class="mb-3 mt-3"><%=categories[x].title%></h4>
                                     </a>
                                 </div>
