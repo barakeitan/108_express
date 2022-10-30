@@ -207,7 +207,7 @@
               </div>
 
             </div> <!-- END INNER CAROUSEL DIV-->
-            
+
             <!-- CAROUSEL CONTROLS -->
             <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true">
@@ -236,203 +236,168 @@
         <hr class="gradient-style" />
 
 
-    <!-- Latest products slider -->
-    <div class="container mb-4 mt-4">
-      <!--Carousel Wrapper-->
-      <div
-        id="products-carousel"
-        class="carousel slide carousel-multi-item"
-        data-ride="carousel"
-      >
-        <!--Controls-->
-        <div class="controls-top mb-2">
-          <div class="row">
-            <div class="col-8">
-              <h3>Latest Products</h3>
-            </div>
-            <div class="col-4">
-              <div class="controls float-right hidden-xs">
-                <a
-                  class="left fa fa-chevron-left btn btn"
-                  href="#products-carousel"
-                  data-bs-target="#products-carousel" 
-                  data-bs-slide="prev"
-                ></a
-                ><a
-                  class="right fa fa-chevron-right btn"
-                  href="#products-carousel"
-                  data-bs-target="#products-carousel"
-                  data-bs-slide="next"
-                ></a>
+        <!-- Latest products slider -->
+        <div class="container mb-4 mt-4">
+          <!--Carousel Wrapper-->
+          <div id="products-carousel" class="carousel slide" data-ride="carousel">
+            <!--Controls-->
+            <div class="controls-top mb-2">
+              <div class="row">
+                <div class="col-8">
+                  <h3>Latest Products</h3>
+                </div>
+                <div class="col-4">
+                  <div class="controls float-right hidden-xs">
+                    <button type="button" class="left fa fa-chevron-left btn"
+                      data-bs-target="#products-carousel" data-bs-slide="prev"></button>
+
+                    <button type="button" class="controls right fa fa-chevron-right btn"
+                      data-bs-target="#products-carousel" data-bs-slide="next"></button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!--/.Controls-->
-    
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-          <!--First slide-->
-          <div class="carousel-item justify-content-center active">
-            <div class="row">
-              <!-- <% for(let i=0; i<3; i++) { %> -->
-                  <div class="col-md-4 product-index-box">
-                      <div class="single-product d-flex flex-column h-100">
-                          <a class="title-link" href="#">
-                              <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                          <div class="product-info">
-                              <a class="title-link" href="#">
-                                  <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                              </a>
-                              <div class="price">$2000</div>
-                          </div>
-                          <!-- <% if(products[i].available) {%> -->
-                          <a href="#"
-                              class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                              Add to Shopping Cart
-                          </a>
-                      </div>
-                      <div class="single-product d-flex flex-column h-100">
-                        <a class="title-link" href="#">
-                            <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                        <div class="product-info">
-                            <a class="title-link" href="#">
-                                <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                            </a>
-                            <div class="price">$2000</div>
-                        </div>
-                        <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
-                            Sold out
-                        </a>
-                    </div>
-                    <div class="single-product d-flex flex-column h-100">
-                      <a class="title-link" href="#">
-                          <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                      <div class="product-info">
-                          <a class="title-link" href="#">
-                              <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                          </a>
-                          <div class="price">$2000</div>
-                      </div>
-                      <a href="#"
-                          class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                          Add to Shopping Cart
-                      </a>
-                  </div>
-                  </div> 
-            </div>
-          </div>
-          <!--/.First slide-->
-    
-          <!--Second slide-->
-          <div class="carousel-item justify-content-center">
-            <div class="row">
-              <!-- <% for(let i=0; i<3; i++) { %> -->
-                  <div class="col-md-4 product-index-box">
-                      <div class="single-product d-flex flex-column h-100">
-                          <a class="title-link" href="#">
-                              <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                          <div class="product-info">
-                              <a class="title-link" href="#">
-                                  <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                              </a>
-                              <div class="price">$2000</div>
-                          </div>
-                          <!-- <% if(products[i].available) {%> -->
-                          <a href="#"
-                              class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                              Add to Shopping Cart
-                          </a>
-                      </div>
-                      <div class="single-product d-flex flex-column h-100">
-                        <a class="title-link" href="#">
-                            <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                        <div class="product-info">
-                            <a class="title-link" href="#">
-                                <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                            </a>
-                            <div class="price">$2000</div>
-                        </div>
-                        <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
-                            Sold out
-                        </a>
-                    </div>
-                    <div class="single-product d-flex flex-column h-100">
-                      <a class="title-link" href="#">
-                          <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                      <div class="product-info">
-                          <a class="title-link" href="#">
-                              <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                          </a>
-                          <div class="price">$2000</div>
-                      </div>
-                      <a href="#"
-                          class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                          Add to Shopping Cart
-                      </a>
-                  </div>
-                  </div> 
-            </div>
-          </div>
-          <!--/.Second slide-->
-    
-          <!--Third slide-->
-          <div class="carousel-item justify-content-center">
-            <div class="row">
-              <!-- <% for(let i=0; i<3; i++) { %> -->
-                  <div class="col-md-4 product-index-box">
-                      <div class="single-product d-flex flex-column h-100">
-                          <a class="title-link" href="#">
-                              <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                          <div class="product-info">
-                              <a class="title-link" href="#">
-                                  <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                              </a>
-                              <div class="price">$2000</div>
-                          </div>
-                          <!-- <% if(products[i].available) {%> -->
-                          <a href="#"
-                              class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                              Add to Shopping Cart
-                          </a>
-                      </div>
-                      <div class="single-product d-flex flex-column h-100">
-                        <a class="title-link" href="#">
-                            <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                        <div class="product-info">
-                            <a class="title-link" href="#">
-                                <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                            </a>
-                            <div class="price">$2000</div>
-                        </div>
-                        <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
-                            Sold out
-                        </a>
-                    </div>
-                    <div class="single-product d-flex flex-column h-100">
-                      <a class="title-link" href="#">
-                          <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
-                      <div class="product-info">
-                          <a class="title-link" href="#">
-                              <h6 class="mt-2 mb-2">Dell Laptop</h6>
-                          </a>
-                          <div class="price">$2000</div>
-                      </div>
-                      <a href="#"
-                          class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                          Add to Shopping Cart
-                      </a>
-                  </div>
-                  </div> 
-            </div>
-          </div>
-          <!--/.Third slide-->
-        </div>
-        <!--/.Slides-->
-      </div>
-      <!--/.Carousel Wrapper-->
-    </div>
+            <!--/.Controls-->
 
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+              <!--First slide-->
+              <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-4 product-index-box">
+                      <div class="single-product d-flex flex-column h-100">
+                        <a class="title-link" href="#">
+                          <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                        <div class="product-info">
+                          <a class="title-link" href="#">
+                            <h6 class="mt-2 mb-2">
+                              Laptop
+                            </h6>
+                          </a>
+                          <div class="price">$2000
+                          </div>
+                        </div>
+                          <a href="#"
+                            class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                            Add to Shopping Cart
+                          </a>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 product-index-box">
+                      <div class="d-flex flex-column h-100">
+                        <a class="title-link" href="#">
+                          <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                        <div class="product-info">
+                          <a class="title-link" href="#">
+                            <h6 class="mt-2 mb-2">
+                              Laptop
+                            </h6>
+                          </a>
+                          <div class="price">$2000
+                          </div>
+                        </div>
+                            <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                              Sold out
+                            </a>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 product-index-box">
+                      <div class="d-flex flex-column h-100">
+                        <a class="title-link" href="#">
+                          <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                        <div class="product-info">
+                          <a class="title-link" href="#">
+                            <h6 class="mt-2 mb-2">
+                              Laptop
+                            </h6>
+                          </a>
+                          <div class="price">$2000
+                          </div>
+                        </div>
+                          <a href="#"
+                            class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                            Add to Shopping Cart
+                          </a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <!--/.First slide-->
+
+              <!--Second slide-->
+              <div class="carousel-item">
+                <div class="row">
+                  <% for(let i=3; i<6; i++) { %>
+                    <div class="col-md-4 product-index-box">
+                      <div class="single-product d-flex flex-column h-100">
+                        <a class="title-link" href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                          <img src="<%= products[i].imagePath %>" alt="Bag" class="img-fluid" /></a>
+                        <div class="product-info">
+                          <a class="title-link" href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                            <h6 class="mt-2 mb-2">
+                              <%= products[i].title %>
+                            </h6>
+                          </a>
+                          <div class="price">$<%= products[i].price %>
+                          </div>
+                        </div>
+                        <% if(products[i].available) {%>
+                          <a href="/add-to-cart/<%=products[i]._id%>"
+                            class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                            Add to Shopping Cart
+                          </a>
+                          <% } else { %>
+                            <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                              Sold out
+                            </a>
+                            <%} %>
+                      </div>
+                    </div>
+                    <%}%>
+                </div>
+              </div>
+              <!--/.Second slide-->
+
+              <!--Third slide-->
+              <div class="carousel-item">
+                <div class="row">
+                  <% for(let i=6; i<9; i++) { %>
+                    <div class="col-md-4 product-index-box">
+                      <div class="single-product d-flex flex-column h-100">
+                        <a class="title-link" href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                          <img src="<%= products[i].imagePath %>" alt="Bag" class="img-fluid" /></a>
+                        <div class="product-info">
+                          <a class="title-link" href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                            <h6 class="mt-2 mb-2">
+                              <%= products[i].title %>
+                            </h6>
+                          </a>
+                          <div class="price">$<%= products[i].price %>
+                          </div>
+                        </div>
+                        <% if(products[i].available) {%>
+                          <a href="/add-to-cart/<%=products[i]._id%>"
+                            class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                            Add to Shopping Cart
+                          </a>
+                          <% } else { %>
+                            <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                              Sold out
+                            </a>
+                            <%} %>
+                      </div>
+                    </div>
+                    <%}%>
+                </div>
+              </div>
+              <!--/.Third slide-->
+            </div>
+            <!--/.Slides-->
+          </div>
+          <!--/.Carousel Wrapper-->
+        </div>
 
         <!-- Footer -->
         <footer>
