@@ -1,8 +1,519 @@
 <html>
-    <head>
-        <title>108 Express</title>
-    </head>
-    <body>
-        
-    </body>
+
+<head>
+  <title>108 Express</title>
+  <link href="css/index.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+  <script src="https://kit.fontawesome.com/91abd10b8f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="content-wrap">
+      <div class="row nav-container mx-auto">
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <div class="search-container">
+            <form class="form-inline" action="/products/search" method="GET">
+              <input class="search-input" type="search" placeholder="Search" name="search" />
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 col-xs-12 logo-container">
+          <a href="/">
+            <img class="logo-img img-fluid" src="/public/assets/main-logo.png" alt="logo" />
+            <h4 class="logo-title">108Express</h4>
+          </a>
+        </div>
+
+        <div class="col-md-4 col-sm-12 col-xs-12 right-nav">
+          <ul>
+            <li>
+              <a href="/shopping-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge badge-pill badge-info">0</span>
+              </a>
+            </li>
+            <!-- <li>
+                            <a
+                              class="dropdown-toggle"
+                              href="#"
+                              role="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              <i class="fas fa-user"></i> Welcome <%=currentUser.username%>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="/user/profile">User Account</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/user/logout">Logout</a>
+                            </div>
+                          </li> -->
+
+            <li>
+              <a href="/user/signup"> Sign Up</a>
+            </li>
+            <li>
+              <a href="/user/signin"> Sign In</a>
+            </li>
+
+          </ul>
+        </div>
+
+        <nav class="navbar navbar-expand-md navbar-custom navbar-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse mx-auto order-0" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/products/">All</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Laptops</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Electronics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Backpacks</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Large Handbags</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Mini bags</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Kitbags</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Office supplies</a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Top Carousel -->
+        <div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true"
+          data-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+              aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/laptops-slide.png" alt="Laptops" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="Backpack" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Large handbags" />
+            </div>
+            <div class="carousel-item" data-bs-interval="2500">
+              <img class="d-block w-100" src="/public/assets/office-supplies-slide2.png" alt="Office supplies" />
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#topCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- Store's categories section -->
+        <div class="container">
+          <h3 class="text-center mb-3 mt-4">Store's Categories</h3>
+          <div id="catCarousel" class="carousel slide mb-3 mt-0 pt-0" data-bs-ride="true" data-ride="carousel">
+            <div class="carousel-inner">
+
+              <!-- first three logos -->
+              <div class="carousel-item justify-content-center active" data-bs-interval="100000000">
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/laptops.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Laptops</h4>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/electronics.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Electronics</h4>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/backpacks.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Backpacks</h4>
+                  </a>
+                </div>
+              </div>
+
+              <!-- another three logos -->
+              <div class="carousel-item justify-content-center">
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/large-handbags.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Large Handbags</h4>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/mini-bags.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Mini bags</h4>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/kitbags.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Kitbags</h4>
+                  </a>
+                </div>
+              </div>
+
+              <!-- FINAL LOGO -->
+              <div class="carousel-item justify-content-center" data-bs-interval="100000">
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                  <a class="title-link" href="#">
+                    <img src="assets/categories/office-supplies.jpg" alt="category" class="circle-img" />
+                    <h4 class="mb-3 mt-3">Office supplies</h4>
+                  </a>
+                </div>
+              </div>
+
+            </div> <!-- END INNER CAROUSEL DIV-->
+
+            <!-- CAROUSEL CONTROLS -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true">
+                <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+                  <a href="#">
+                    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#catCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true">
+                <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+                  <a href="#">
+                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div> <!-- END CATEGORY CAROUSEL-->
+        </div>
+
+        <hr class="gradient-style" />
+
+
+        <!-- Latest products slider -->
+        <div class="container mb-4 mt-4">
+          <div id="products-carousel" class="carousel slide" data-ride="carousel">
+
+            <!-- CAROUSEL CONTROLS -->
+            <div class="controls-top mb-2">
+              <div class="row">
+                <div class="col-8">
+                  <h3>Latest Products</h3>
+                </div>
+                <div class="col-4">
+                  <div class="controls hidden-xs" style="float: right;">
+                    <!-- use inline style because bootstrap float-right not working-->
+                    <button type="button" class="left fa fa-chevron-left btn" data-bs-target="#products-carousel"
+                      data-bs-slide="prev"></button>
+
+                    <button type="button" class="controls right fa fa-chevron-right btn"
+                      data-bs-target="#products-carousel" data-bs-slide="next"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--END CAROUSEL CONTROLS-->
+
+            <!-- CAROUSEL SLIDES -->
+            <div class="carousel-inner" role="listbox">
+
+              <!-- FIRST SLIDE-->
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-md-4 product-index-box">
+                    <div class="single-product d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                        Add to Shopping Cart
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 product-index-box">
+                    <div class="d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                        Sold out
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 product-index-box">
+                    <div class="d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                        Add to Shopping Cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--END CAROUSEL ITEM DIV-->
+
+              <!-- SECOND SLIDE-->
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 product-index-box">
+                    <div class="d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                        Sold out
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 product-index-box">
+                    <div class="d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                        Sold out
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 product-index-box">
+                    <div class="d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                        Sold out
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--END CAROUSEL ITEM DIV-->
+
+              <!-- THIRD SLIDE-->
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 product-index-box">
+                    <div class="single-product d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                        Add to Shopping Cart
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 product-index-box">
+                    <div class="single-product d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                        Add to Shopping Cart
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 product-index-box">
+                    <div class="d-flex flex-column h-100">
+                      <a class="title-link" href="#">
+                        <img src="assets/ToDelete/laptop.jpg" alt="Bag" class="img-fluid" /></a>
+                      <div class="product-info">
+                        <a class="title-link" href="#">
+                          <h6 class="mt-2 mb-2">
+                            Laptop
+                          </h6>
+                        </a>
+                        <div class="price">$2000
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                        Add to Shopping Cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--END CAROUSEL ITEM DIV-->
+
+            </div> <!-- END CAROUSEL INNER DIV-->
+          </div> <!-- END PRODUCT CAROUSEL DIV-->
+        </div> <!-- END CONTAINER DIV-->
+
+        <!-- Footer -->
+        <footer>
+
+          <section id="contact" class="mt-5">
+            <div class="row">
+              <div class="col-md-4 col-sm-12 col-xs-12 white-links">
+                <p class="footer-title">About Us</p>
+                <ul id="footer-list">
+                  <li>
+                    <a href="/public/about-demo/about-us.html">About Our Store</a>
+                  </li>
+                  <li>
+                    <a href="/public/about-demo/contact-us.html">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="/public/about-demo/shipping-policy.html">Shipping Policy</a>
+                  </li>
+                  <li>
+                    <a href="/public/about-demo/careers.html">Careers</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-md-6 col-sm-12 col-xs-12 white-links mb-2">
+                <p class="footer-title">Follow Us</p>
+                <a href="https://facebook.com/" target="_blank">
+                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                  Facebook
+                </a>
+
+                <a id="profile-link" target="_blank" href="https://instagram.com/">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                  Instagram
+                </a>
+
+                <a href="https://twitter.com/" target="_blank">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                  Twitter
+                </a>
+
+              </div>
+
+            </div>
+          </section>
+
+          <section class="bottom-footer">
+            <div class="row">
+              <div class="col-12 mr-auto">
+                © 108Express 2022 **This is just a fake website for the College Of Managment. All the products and
+                contact details given
+                are
+                not real.
+              </div>
+            </div>
+          </section>
+
+        </footer>
+
+</body>
+
 </html>
