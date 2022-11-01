@@ -31,9 +31,9 @@ userSchema.methods.encryptPassword = (password) => {
   return bcrypt.hash(password, saltRounds);
 };
 
-userSchema.methods.validPassword = function (candidatePassword) {
+userSchema.methods.validPassword = async function (candidatePassword) {
   if (this.password != null) {
-    return bcrypt.compare(candidatePassword, this.password);
+    return await bcrypt.compare(candidatePassword, this.password);
   } else {
     return false;
   }
