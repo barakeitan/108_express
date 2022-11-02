@@ -1,0 +1,39 @@
+2022-10-29 14:38:38.958 INFO: 	user 1234 brodcast message: Hello -ctXvTvKiCSBNKaZAAAB :)
+2022-10-29 14:38:38.960 ERROR: 	user 1234 brodcast message: Hello -ctXvTvKiCSBNKaZAAAB :)
+2022-10-29 14:38:38.960 ERROR: 	user 1234 brodcast message: Hello -ctXvTvKiCSBNKaZAAAB :)
+2022-10-29 14:38:38.961 WARN: 	user 1234 brodcast message: Hello -ctXvTvKiCSBNKaZAAAB :)
+2022-10-29 14:38:38.961 WARN: 	user 1234 brodcast message: Hello -ctXvTvKiCSBNKaZAAAB :)
+2022-10-29 14:43:34.772 INFO: 	user 1234 brodcast message: Hello pHJfnqPodaGcCDmhAAAB :)
+2022-10-29 14:43:46.079 INFO: 	user 1234 brodcast message: Hello NxudOuT8DSryKT2nAAAD :)
+2022-10-29 14:47:00.564 INFO: 	socket.io client is up!
+2022-10-29 14:47:00.591 INFO: 	user AgC2HrvC2u2-vG5kAAAB connected
+2022-10-29 14:47:00.594 INFO: 	user 1234 brodcast message: Hello AgC2HrvC2u2-vG5kAAAB :)
+2022-10-29 14:47:00.600 INFO: 	connect to server: socket id: AgC2HrvC2u2-vG5kAAAB
+2022-10-29 14:47:55.701 INFO: 	socket.io client is up!
+2022-10-29 14:47:55.718 INFO: 	user 7chupFIxz345CH6-AAAD connected
+2022-10-29 14:47:55.719 INFO: 	server said:  Hello 7chupFIxz345CH6-AAAD :)
+2022-10-29 14:47:55.718 INFO: 	user 1234 brodcast message: Hello 7chupFIxz345CH6-AAAD :)
+2022-10-29 14:47:55.722 INFO: 	connect to server: socket id: 7chupFIxz345CH6-AAAD
+2022-10-29 14:54:04.166 INFO: 	socket.io client is up!
+2022-10-29 14:54:04.205 INFO: 	user D76xKiNN4_OcNDc_AAAB connected
+2022-10-29 14:54:04.208 INFO: 	user 1234 brodcast message: Hello D76xKiNN4_OcNDc_AAAB :)
+2022-10-29 14:54:04.215 INFO: 	connect to server: socket id: D76xKiNN4_OcNDc_AAAB
+2022-10-29 14:54:07.649 INFO: 	socket.io client is up!
+2022-10-29 14:54:07.669 INFO: 	user l98ytPilwR-DzbdqAAAD connected
+2022-10-29 14:54:07.670 INFO: 	user 1234 brodcast message: Hello l98ytPilwR-DzbdqAAAD :)
+2022-10-29 14:54:07.672 INFO: 	server said:  Hello l98ytPilwR-DzbdqAAAD :)
+2022-10-29 14:54:07.674 INFO: 	connect to server: socket id: l98ytPilwR-DzbdqAAAD
+2022-10-29 15:52:14.549 INFO: 	user undefined with socket id: D76xKiNN4_OcNDc_AAAB disconnected
+2022-10-29 15:52:14.553 INFO: 	user 1234 with socket id: l98ytPilwR-DzbdqAAAD disconnected
+2022-10-29 15:52:15.855 INFO: 	user Wi2kbK-Yz59jVu_fAAAF connected
+2022-10-29 15:52:15.856 INFO: 	user 1234 brodcast message: Hello Wi2kbK-Yz59jVu_fAAAF :)
+2022-10-29 15:52:15.864 INFO: 	connect to server: socket id: Wi2kbK-Yz59jVu_fAAAF
+2022-10-29 15:52:15.961 INFO: 	user hJb7KhbUs0Ff0iP9AAAH connected
+2022-10-29 15:52:15.962 INFO: 	user 1234 brodcast message: Hello hJb7KhbUs0Ff0iP9AAAH :)
+2022-10-29 15:52:15.966 INFO: 	server said:  Hello hJb7KhbUs0Ff0iP9AAAH :)
+2022-10-29 15:52:15.971 INFO: 	connect to server: socket id: hJb7KhbUs0Ff0iP9AAAH
+2022-10-29 16:52:24.889 INFO: 	user undefined with socket id: Wi2kbK-Yz59jVu_fAAAF disconnected
+2022-10-29 16:52:25.594 INFO: 	user fvK6BgfxfGLGJ7g5AAAJ connected
+2022-10-29 16:52:25.595 INFO: 	user 1234 brodcast message: Hello fvK6BgfxfGLGJ7g5AAAJ :)
+2022-10-29 16:52:25.595 INFO: 	server said:  Hello fvK6BgfxfGLGJ7g5AAAJ :)
+2022-10-29 16:52:25.596 INFO: 	connect to server: socket id: fvK6BgfxfGLGJ7g5AAAJ

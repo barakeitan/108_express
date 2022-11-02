@@ -2,3 +2,4 @@ node_modules/
 full.css
 .DS_Store
 .vscode
+.env
