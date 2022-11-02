@@ -9,16 +9,20 @@
                     aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#topCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="First slide" />
+                    <img class="d-block w-100" src="/public/assets/laptops-slide.png" alt="Laptops" />
                 </div>
                 <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Second slide" />
+                    <img class="d-block w-100" src="/public/assets/nature-bag-slide.jpeg" alt="Backpack" />
                 </div>
                 <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="/public/assets/straw-bag-slide.jpeg" alt="Third slide" />
+                    <img class="d-block w-100" src="/public/assets/ladies-bags-slide.jpg" alt="Large handbags" />
+                </div>
+                <div class="carousel-item" data-bs-interval="2500">
+                    <img class="d-block w-100" src="/public/assets/office-supplies-slide2.png" alt="Office supplies" />
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
@@ -38,53 +42,207 @@
                 <div class="carousel-inner">
                     <% if (categories) { %>
                         <% var remain=3; %>
-                        <% for(let i=0; i<categories.length; i+= remain){ %>
-                            <div <% if (i == 0) {%>
-                                class="carousel-item justify-content-center active" data-bs-interval="100000000">
-                            <%} else {%>
-                                class="carousel-item justify-content-center" data-bs-interval="100000000">
-                            <%}%>
-                            <%for(var j = 0; j < remain ; j++) {%>
-                                <% let x = i + j %>
-                                <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
-                                    <a class="title-link" href="/products/<%=categories[i].slug%>">
-                                      <img src="assets/images/dept<%=i%>.jpg" alt="category" class="circle-img" />
-                                      <h4 class="mb-3 mt-3"><%=categories[x].title%></h4>
-                                    </a>
+                            <% for(let i=0; i<categories.length; i+=remain){ %>
+                                <div <% if (i==0) {%> class="carousel-item justify-content-center active"
+                                    data-bs-interval="100000000">
+                                    <%} else {%>
+                                        class="carousel-item justify-content-center" data-bs-interval="100000000">
+                                        <%}%>
+                                            <%for(var j=0; j < remain ; j++) {%>
+                                                <% let x=i + j %>
+                                                    <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
+                                                        <a class="title-link" href="/products/<%=categories[x].slug%>">
+                                                            <img src="assets/categories/<%=categories[x].slug%>.jpg"
+                                                                alt="category" class="circle-img" />
+                                                            <h4 class="mb-3 mt-3">
+                                                                <%=categories[x].title%>
+                                                            </h4>
+                                                        </a>
+                                                    </div>
+                                                    <%}%>
+                                                        <!--end j for-->
+                                                        <%if(data.a.length - i < 3) {%>
+                                                            <%remain=data.a.length - i%>
+                                                                <%} %>
+                                                                    <!--end if-->
+                                                                    <%} %>
+                                                                        <!-- end i for-->
+                                                                        <%}%>
+                                                                            <!--end if-->
+                                </div> <!-- CAROUSEL INNER END-->
+
+                                <!-- CAROUSEL CONTROLS -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true">
+                                        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+                                            <a href="#">
+                                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+
+                                <button class="carousel-control-next" type="button" data-bs-target="#catCarousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true">
+                                        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+                                            <a href="#">
+                                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                </div> <!-- CAT CAROUSEL END-->
+            </div> <!-- CONTAINER END-->
+
+            <hr class="gradient-style" />
+
+            <!-- Latest products slider -->
+            <div class="container mb-4 mt-4">
+                <!--Carousel Wrapper-->
+                <div id="products-carousel" class="carousel slide carousel-multi-item" data-ride="carousel">
+                    <!-- CAROUSEL CONTROLS -->
+                    <div class="controls-top mb-2">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3>Latest Products</h3>
+                            </div>
+                            <div class="col-4">
+                                <div class="controls hidden-xs" style="float: right;">
+                                    <!-- use inline style because bootstrap float-right not working-->
+                                    <button type="button" class="left fa fa-chevron-left btn"
+                                        data-bs-target="#products-carousel" data-bs-slide="prev"></button>
+
+                                    <button type="button" class="controls right fa fa-chevron-right btn"
+                                        data-bs-target="#products-carousel" data-bs-slide="next"></button>
                                 </div>
-                            <%}%> <!--end j for-->
-                            <%if(data.a.length - i < 3) {%>
-                                <%remain = data.a.length - i%>
-                            <%} %> <!--end if-->
-                        <%} %> <!-- end i for-->
-                    <%}%> <!--end if-->
-                </div> <!-- CAROUSEL INNER END-->
-
-                <!-- CAROUSEL CONTROLS -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#catCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true">
-                        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
-                            <a href="#">
-                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                            </a>
+                            </div>
                         </div>
-                    </span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
+                    </div>
+                    <!--END CAROUSEL CONTROLS-->
 
-                <button class="carousel-control-next" type="button" data-bs-target="#catCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true">
-                        <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
-                            <a href="#">
-                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                            </a>
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        <!--First slide-->
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <% for(let i=0; i<3; i++) { %>
+                                    <div class="col-md-4 product-index-box">
+                                        <div class="single-product d-flex flex-column h-100">
+                                            <a class="title-link"
+                                                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                <img src="<%= products[i].imagePath %>" alt="Bag"
+                                                    class="img-fluid" /></a>
+                                            <div class="product-info">
+                                                <a class="title-link"
+                                                    href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                    <h6 class="mt-2 mb-2">
+                                                        <%= products[i].title %>
+                                                    </h6>
+                                                </a>
+                                                <div class="price">$<%= products[i].price %>
+                                                </div>
+                                            </div>
+                                            <% if(products[i].available) {%>
+                                                <a href="/add-to-cart/<%=products[i]._id%>"
+                                                    class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                                                    Add to Shopping Cart
+                                                </a>
+                                                <% } else { %>
+                                                    <a href="#"
+                                                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                                                        Sold out
+                                                    </a>
+                                                    <%} %>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                            </div>
                         </div>
-                    </span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div> <!-- CAT CAROUSEL END-->
-        </div> <!-- CONTAINER END-->
+                        <!--/.First slide-->
 
-        <hr class="gradient-style" />
+                        <!--Second slide-->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <% for(let i=3; i<6; i++) { %>
+                                    <div class="col-md-4 product-index-box">
+                                        <div class="single-product d-flex flex-column h-100">
+                                            <a class="title-link"
+                                                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                <img src="<%= products[i].imagePath %>" alt="Bag"
+                                                    class="img-fluid" /></a>
+                                            <div class="product-info">
+                                                <a class="title-link"
+                                                    href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                    <h6 class="mt-2 mb-2">
+                                                        <%= products[i].title %>
+                                                    </h6>
+                                                </a>
+                                                <div class="price">$<%= products[i].price %>
+                                                </div>
+                                            </div>
+                                            <% if(products[i].available) {%>
+                                                <a href="/add-to-cart/<%=products[i]._id%>"
+                                                    class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                                                    Add to Shopping Cart
+                                                </a>
+                                                <% } else { %>
+                                                    <a href="#"
+                                                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                                                        Sold out
+                                                    </a>
+                                                    <%} %>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                            </div>
+                        </div>
+                        <!--/.Second slide-->
 
-        <%- include ../partials/footer %>
+                        <!--Third slide-->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <% for(let i=6; i<9; i++) { %>
+                                    <div class="col-md-4 product-index-box">
+                                        <div class="single-product d-flex flex-column h-100">
+                                            <a class="title-link"
+                                                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                <img src="<%= products[i].imagePath %>" alt="Bag"
+                                                    class="img-fluid" /></a>
+                                            <div class="product-info">
+                                                <a class="title-link"
+                                                    href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                    <h6 class="mt-2 mb-2">
+                                                        <%= products[i].title %>
+                                                    </h6>
+                                                </a>
+                                                <div class="price">$<%= products[i].price %>
+                                                </div>
+                                            </div>
+                                            <% if(products[i].available) {%>
+                                                <a href="/add-to-cart/<%=products[i]._id%>"
+                                                    class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                                                    Add to Shopping Cart
+                                                </a>
+                                                <% } else { %>
+                                                    <a href="#"
+                                                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                                                        Sold out
+                                                    </a>
+                                                    <%} %>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                            </div>
+                        </div>
+                        <!--/.Third slide-->
+                    </div>
+                    <!--/.Slides-->
+                </div>
+                <!--/.Carousel Wrapper-->
+            </div>
+
+            <%- include ../partials/footer %>
