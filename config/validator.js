@@ -12,8 +12,6 @@ const userSignUpValidationRules = () => {
 };
 
 const userSignInValidationRules = () => {
-  console.log("in validator");
-  console.log(check("email", "Invalid email").not().isEmpty().isEmail());
   return [
     check("email", "Invalid email").not().isEmpty().isEmail(),
     check("password", "Invalid password").not().isEmpty().isLength({ min: 4 }),
