@@ -39,4 +39,5 @@ userSchema.methods.validPassword = async function (candidatePassword) {
   }
 };
 
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+module.exports = User;

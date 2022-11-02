@@ -57,9 +57,10 @@ const orderSchema = Schema({
   },
   status: {
     type: String,
-    enum: ["Accepted","Shipped","In transit","Delivered"],
+    enum: ["Accepted", "Shipped", "In transit", "Delivered"],
     default: "Accepted",
   },
 });
 
-module.exports = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);
+module.exports = Order;
