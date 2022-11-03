@@ -1,20 +1,17 @@
-const http = require('http').createServer();
-const port = process.env.PORT || 3001;
+const app = require('../../index');
+const http = require('http').createServer(app);
 
 const {logger} = require('./logger.js');
 
-const io = require('socket.io')(http, {
-    cors: { origin: "*" }
-});
+const io = require('socket.io')(http);
 
-const user = {id: '1234'};
 
-const users = new Map(); // in the future the users should be taken from DB - every time client connect to the website
+const users = new Map(); //<user.id, socket.id>
 
 io.on('connection', (socket) => {
     logger.log({level: 'info', message:`user ${socket.id} connected`});
     users.set(user.id ,socket.id);
-    brodcastMessage(socket, `Hello ${socket.id} :)`);
+    brodcastMessage(socket, {header: `hi ${socket.id}` , message: `Hello ${socket.id} :)`});
 
     socket.on('message', (message) =>     {
         logger.info({level: 'info', message:`user ${getByValue(socket.id)} with socket id: ${socket.id} said: ${message}`});
@@ -28,8 +25,8 @@ io.on('connection', (socket) => {
 
 
 function brodcastMessage(socket, message) {
-    logger.log({level: 'info', message: `user ${getByValue(socket.id)} brodcast message: ${message}`});
-    socket.broadcast.emit('server-message', message);
+    logger.log({level: 'info', message: `user ${getByValue(socket.id)} brodcast message: ${message.message}`});
+    socket.broadcast.emit('message', message);
 }
 
 function getByValue(searchValue) {
@@ -38,5 +35,3 @@ function getByValue(searchValue) {
         return key;
     }
   }
-
-http.listen(port, () => console.log(`ws listening on http://localhost:${port}`) );
