@@ -1,5 +1,4 @@
-<%- include ../partials/header %>
-    <%- include ../partials/navbar%>
+<%- include ("../partials/header") %> <%- include ("../partials/navbar") %>
 
         <!-- Top Carousel -->
         <div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true"
@@ -51,20 +50,16 @@
                                             <%for(var j=0; j < remain ; j++) {%>
                                                 <% let x=i + j %>
                                                     <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
-                                                        <a class="title-link" href="/products/<%=categories[x].slug%>">
-                                                            <img src="assets/categories/<%=categories[x].slug%>.jpg"
+                                                        <a class="title-link" href="/products/<%=categories[x]?.slug%>">
+                                                            <img src="assets/categories/<%=categories[x]?.slug%>.jpg"
                                                                 alt="category" class="circle-img" />
                                                             <h4 class="mb-3 mt-3">
-                                                                <%=categories[x].title%>
+                                                                <%=categories[x]?.title%>
                                                             </h4>
                                                         </a>
                                                     </div>
                                                     <%}%>
                                                         <!--end j for-->
-                                                        <%if(data.a.length - i < 3) {%>
-                                                            <%remain=data.a.length - i%>
-                                                                <%} %>
-                                                                    <!--end if-->
                                                                     <%} %>
                                                                         <!-- end i for-->
                                                                         <%}%>
@@ -245,4 +240,4 @@
                 <!--/.Carousel Wrapper-->
             </div>
 
-            <%- include ../partials/footer %>
+            <%- include ("../partials/footer") %>
