@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 exports.renderAboutUs = (req, res) => {
     res.render("pages/about-us", {
-        pageName: "About Us",
+        pageName: "About Us"
     });
 };
 
@@ -70,13 +70,12 @@ exports.handleContactUs = (req, res) => {
                 "error",
                 "An error occured... Please check your internet connection and try again later"
             );
-            return res.redirect("/pages/contact-us");
         } else {
             req.flash(
                 "success",
                 "Email sent successfully! Thanks for your inquiry."
             );
-            return res.redirect("/pages/contact-us");
         }
+        return res.redirect("/pages/contact-us");
     });
 }
