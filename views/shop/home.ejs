@@ -1,4 +1,5 @@
-<%- include ("../partials/header") %> <%- include ("../partials/navbar") %>
+<%- include ("../partials/header") %>
+    <%- include ("../partials/navbar") %>
 
         <!-- Top Carousel -->
         <div id="topCarousel" class="carousel carousel-dark slide mb-3 mt-0 pt-0" data-bs-ride="true"
@@ -12,16 +13,16 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2500">
-                    <img class="d-block w-100" src="../../public/assets/laptops-slide.png" alt="Laptops" />
+                    <img class="d-block w-100" src="../assets/laptops-slide.png" alt="Laptops" />
                 </div>
                 <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="../../public/assets/nature-bag-slide.jpeg" alt="Backpack" />
+                    <img class="d-block w-100" src="../assets/nature-bag-slide.jpeg" alt="Backpack" />
                 </div>
                 <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="../../public/assets/ladies-bags-slide.jpg" alt="Large handbags" />
+                    <img class="d-block w-100" src="../assets/ladies-bags-slide.jpg" alt="Large handbags" />
                 </div>
                 <div class="carousel-item" data-bs-interval="2500">
-                    <img class="d-block w-100" src="../../public/assets/office-supplies-slide2.png" alt="Office supplies" />
+                    <img class="d-block w-100" src="../assets/office-supplies-slide2.png" alt="Office supplies" />
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#topCarousel" data-bs-slide="prev">
@@ -51,7 +52,7 @@
                                                 <% let x=i + j %>
                                                     <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
                                                         <a class="title-link" href="/products/<%=categories[x]?.slug%>">
-                                                            <img src="assets/categories/<%=categories[x]?.slug%>.jpg"
+                                                            <img src="../assets/categories/<%=categories[x]?.slug%>.jpg"
                                                                 alt="category" class="circle-img" />
                                                             <h4 class="mb-3 mt-3">
                                                                 <%=categories[x]?.title%>
@@ -60,10 +61,10 @@
                                                     </div>
                                                     <%}%>
                                                         <!--end j for-->
-                                                                    <%} %>
-                                                                        <!-- end i for-->
-                                                                        <%}%>
-                                                                            <!--end if-->
+                                                        <%} %>
+                                                            <!-- end i for-->
+                                                            <%}%>
+                                                                <!--end if-->
                                 </div> <!-- CAROUSEL INNER END-->
 
                                 <!-- CAROUSEL CONTROLS -->
@@ -125,38 +126,38 @@
                         <div class="carousel-item active">
                             <div class="row">
                                 <% if(products.length) {%>
-                                <% for(let i=0; i<3; i++) { %>
-                                    <div class="col-md-4 product-index-box">
-                                        <div class="single-product d-flex flex-column h-100">
-                                            <a class="title-link"
-                                                href="/products/<%=products[i]?.category?.slug%>/<%=products[i]?._id%>">
-                                                <img src="<%= products[i]?.imagePath %>" alt="Bag"
-                                                    class="img-fluid" /></a>
-                                            <div class="product-info">
+                                    <% for(let i=0; i<3; i++) { %>
+                                        <div class="col-md-4 product-index-box">
+                                            <div class="single-product d-flex flex-column h-100">
                                                 <a class="title-link"
-                                                    href="/products/<%=products[i]?.category.slug%>/<%=products[i]?._id%>">
-                                                    <h6 class="mt-2 mb-2">
-                                                        <%= products[i].title %>
-                                                    </h6>
-                                                </a>
-                                                <div class="price">$<%= products[i].price %>
-                                                </div>
-                                            </div>
-                                            <% if(products[i].available) {%>
-                                                <a href="/add-to-cart/<%=products[i]?._id%>"
-                                                    class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                                                    Add to Shopping Cart
-                                                </a>
-                                                <% } else { %>
-                                                    <a href="#"
-                                                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
-                                                        Sold out
+                                                    href="/products/<%=products[i]?.category?.slug%>/<%=products[i]?._id%>">
+                                                    <img src="<%= products[i]?.imagePath %>" alt="Bag"
+                                                        class="img-fluid" /></a>
+                                                <div class="product-info">
+                                                    <a class="title-link"
+                                                        href="/products/<%=products[i]?.category.slug%>/<%=products[i]?._id%>">
+                                                        <h6 class="mt-2 mb-2">
+                                                            <%= products[i].title %>
+                                                        </h6>
                                                     </a>
-                                                    <%} %>
+                                                    <div class="price">$<%= products[i].price %>
+                                                    </div>
+                                                </div>
+                                                <% if(products[i].available) {%>
+                                                    <a href="/shop/add-to-cart/<%=products[i]?._id%>"
+                                                        class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                                                        Add to Shopping Cart
+                                                    </a>
+                                                    <% } else { %>
+                                                        <a href="#"
+                                                            class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                                                            Sold out
+                                                        </a>
+                                                        <%} %>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <%}%>
-                                <%} %>
+                                        <%}%>
+                                            <%} %>
                             </div>
                         </div>
                         <!--/.First slide-->
@@ -165,38 +166,38 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <% if(products.length) {%>
-                                <% for(let i=3; i<6; i++) { %>
-                                    <div class="col-md-4 product-index-box">
-                                        <div class="single-product d-flex flex-column h-100">
-                                            <a class="title-link"
-                                                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
-                                                <img src="<%= products[i].imagePath %>" alt="Bag"
-                                                    class="img-fluid" /></a>
-                                            <div class="product-info">
+                                    <% for(let i=3; i<6; i++) { %>
+                                        <div class="col-md-4 product-index-box">
+                                            <div class="single-product d-flex flex-column h-100">
                                                 <a class="title-link"
                                                     href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
-                                                    <h6 class="mt-2 mb-2">
-                                                        <%= products[i].title %>
-                                                    </h6>
-                                                </a>
-                                                <div class="price">$<%= products[i].price %>
-                                                </div>
-                                            </div>
-                                            <% if(products[i].available) {%>
-                                                <a href="/add-to-cart/<%=products[i]._id%>"
-                                                    class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                                                    Add to Shopping Cart
-                                                </a>
-                                                <% } else { %>
-                                                    <a href="#"
-                                                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
-                                                        Sold out
+                                                    <img src="<%= products[i].imagePath %>" alt="Bag"
+                                                        class="img-fluid" /></a>
+                                                <div class="product-info">
+                                                    <a class="title-link"
+                                                        href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                        <h6 class="mt-2 mb-2">
+                                                            <%= products[i].title %>
+                                                        </h6>
                                                     </a>
-                                                    <%} %>
+                                                    <div class="price">$<%= products[i].price %>
+                                                    </div>
+                                                </div>
+                                                <% if(products[i].available) {%>
+                                                    <a href="/shop/add-to-cart/<%=products[i]._id%>"
+                                                        class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                                                        Add to Shopping Cart
+                                                    </a>
+                                                    <% } else { %>
+                                                        <a href="#"
+                                                            class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                                                            Sold out
+                                                        </a>
+                                                        <%} %>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <%}%>
-                                <%}%>
+                                        <%}%>
+                                            <%}%>
                             </div>
                         </div>
                         <!--/.Second slide-->
@@ -205,38 +206,38 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <% if(products.length) {%>
-                                <% for(let i=6; i<9; i++) { %>
-                                    <div class="col-md-4 product-index-box">
-                                        <div class="single-product d-flex flex-column h-100">
-                                            <a class="title-link"
-                                                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
-                                                <img src="<%= products[i].imagePath %>" alt="Bag"
-                                                    class="img-fluid" /></a>
-                                            <div class="product-info">
+                                    <% for(let i=6; i<9; i++) { %>
+                                        <div class="col-md-4 product-index-box">
+                                            <div class="single-product d-flex flex-column h-100">
                                                 <a class="title-link"
                                                     href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
-                                                    <h6 class="mt-2 mb-2">
-                                                        <%= products[i].title %>
-                                                    </h6>
-                                                </a>
-                                                <div class="price">$<%= products[i].price %>
-                                                </div>
-                                            </div>
-                                            <% if(products[i].available) {%>
-                                                <a href="/add-to-cart/<%=products[i]._id%>"
-                                                    class="btn btn-block btn-secondary button-style mt-auto mb-2">
-                                                    Add to Shopping Cart
-                                                </a>
-                                                <% } else { %>
-                                                    <a href="#"
-                                                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
-                                                        Sold out
+                                                    <img src="<%= products[i].imagePath %>" alt="Bag"
+                                                        class="img-fluid" /></a>
+                                                <div class="product-info">
+                                                    <a class="title-link"
+                                                        href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>">
+                                                        <h6 class="mt-2 mb-2">
+                                                            <%= products[i].title %>
+                                                        </h6>
                                                     </a>
-                                                    <%} %>
+                                                    <div class="price">$<%= products[i].price %>
+                                                    </div>
+                                                </div>
+                                                <% if(products[i].available) {%>
+                                                    <a href="/shop/add-to-cart/<%=products[i]._id%>"
+                                                        class="btn btn-block btn-secondary button-style mt-auto mb-2">
+                                                        Add to Shopping Cart
+                                                    </a>
+                                                    <% } else { %>
+                                                        <a href="#"
+                                                            class="btn btn-block btn-danger button-style-danger mt-2 mb-2">
+                                                            Sold out
+                                                        </a>
+                                                        <%} %>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <%}%>
-                                <%}%>
+                                        <%}%>
+                                            <%}%>
                             </div>
                         </div>
                         <!--/.Third slide-->
@@ -246,4 +247,4 @@
                 <!--/.Carousel Wrapper-->
             </div>
 
-            <%- include ("../partials/footer") %>
+<%- include ("../partials/footer") %>
