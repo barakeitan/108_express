@@ -6,10 +6,13 @@ const Order = require("../models/order");
 
 exports.renderShopHomePage = async (req, res) => {
     try {
-      const products = await Product.find({})
+      const products = await Product.find({raw: true})
         .sort("-createdAt")
-        .populate("category");
-      res.render("shop/home", { pageName: "Home", products });
+        .populate("category")
+        .exec();
+      const categories = await Category.find({raw:true}).exec();
+    
+      res.render("shop/home", { pageName: "Home", products,categories });
     } catch (error) {
       console.log(error);
       res.redirect("/");
