@@ -40,7 +40,7 @@
               </a>
             </td>
             <td class="text-center">
-              <a href="/add-to-cart/<%=product._id%>"
+              <a href="/shop/add-to-cart/<%=product._id%>"
                 ><i class="fa fa-plus-square" aria-hidden="true"></i
               > </a>
             </td>
@@ -50,7 +50,7 @@
             </p>
           </td>
             <td class="text-center" >
-              <a href="/reduce/<%=product._id%>"
+              <a href="/shop/reduce/<%=product._id%>"
                 ><i class="fa fa-minus-square" aria-hidden="true"></i
               ></a>
             </td>
@@ -58,7 +58,7 @@
             <td>$<%= product.totalPrice %></td>
             <td>
               <a
-                href="/removeAll/<%=product._id%>"
+                href="/shop/removeAll/<%=product._id%>"
                 class="btn btn-danger btn-sm button-style-danger"
                 >Remove all</a
               >
@@ -72,12 +72,12 @@
 <hr>
   <div class="row mt-4 mr-auto">
     <div class="col-md-11 col-sm-12 m-auto">
-      <strong>Total: <%= cart.totalCost %> </strong>
+      <strong>Total: <%= cart.totalCost %>$</strong>
     </div>
   </div>
   <div class="row mt-2 mr-auto">
     <div class="col-md-11 col-sm-12 m-auto">
-      <a href="/checkout" class="btn btn-dark button-style">Checkout</a>
+      <a href="/shop/checkout" class="btn btn-dark button-style">Checkout</a>
     </div>
   </div>
   <% } else { %>
