@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { checkCurrency } = require("../public/js/currency");
 const Schema = mongoose.Schema;
 
 const orderSchema = Schema({
@@ -16,6 +17,13 @@ const orderSchema = Schema({
       type: Number,
       default: 0,
       required: true,
+    },
+    currency: {
+      type: String,
+      default: "USD", 
+      validate: (currency) => {
+        return checkCurrency(currency);
+      }
     },
     items: [
       {
