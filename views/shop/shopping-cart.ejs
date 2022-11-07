@@ -22,7 +22,7 @@
           <% products.forEach( product => { %> <% if(product != null) {%>
           <tr class="my-auto">
             <td>
-              <a
+              <a class="product-index-box"
               href="/products/<%=product.category.slug%>/<%=product._id%>"
             >
               <img src="<%=product.imagePath%>" class="img-small image-fluid" alt="image thumbnail" />
