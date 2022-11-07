@@ -148,16 +148,6 @@
     background-position: 100% center;
   }
 
-/*  CATEGORY CROUSEL */
-#catCarousel .carousel-item {
-    display: inline-flex;
-    visibility: hidden;
-}
-
-#catCarousel .active {
-    visibility: visible;
-}
-
 /* HOME PAGE */
   
 .circle-img {
