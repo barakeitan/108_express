@@ -222,7 +222,7 @@ exports.removeAllByProductId = async function (req, res, next) {
         if (err) {
           req.flash("error", err.message);
           console.log(err);
-          return res.redirect("/checkout");
+          return res.redirect("/shop/checkout");
         }
         const order = new Order({
           user: req.user,
@@ -237,7 +237,7 @@ exports.removeAllByProductId = async function (req, res, next) {
         order.save(async (err, newOrder) => {
           if (err) {
             console.log(err);
-            return res.redirect("/checkout");
+            return res.redirect("/shop/checkout");
           }
           await cart.save();
           await Cart.findByIdAndDelete(cart._id);
