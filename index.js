@@ -6,10 +6,10 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const flash = require("connect-flash");
 const Category = require("./models/category");
-const MongoStore = require("connect-mongo")(session);
 const connectDB = require("./config/db");
 
 const app = express();
@@ -29,13 +29,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
+    store: MongoStore.create({
+      mongoUrl:process.env.MONGO_URI ,
     }),
     //session expires after 3 hours
     cookie: { maxAge: 60 * 1000 * 60 * 3 },
