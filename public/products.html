@@ -1,0 +1,170 @@
+<html>
+
+<head>
+  <title>108 Express</title>
+  <link href="css/index.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+  <script src="https://kit.fontawesome.com/91abd10b8f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    
+<div class="container-fluid">
+    <!-- Breadcrumbs -->
+    <div class="row mt-2">
+        <div class="col-md-12 m-auto">
+          <!-- <%if (breadcrumbs) { %> -->
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <% breadcrumbs.forEach(crumb => { if(!crumb.name.startsWith("?")){%>
+              <li class="breadcrumb-item" aria-current="page">
+                <a href="<%=crumb.url%>"><%= crumb.name %></a>
+              </li>
+              <%}})%>
+            </ol>
+          </nav>
+          <%} %>
+        </div>
+      </div>
+      <!-- Page banner image -->
+    
+      <% if(pageName == 'All Products') { %>
+      <div class="text-center hero-container">
+        <img
+          class="d-block w-100 hero-image"
+          src="/images/banner-all-products.jpg"
+        />
+        <div class="hero-text">
+          <h1><%=pageName%></h1>
+        </div>
+      </div>
+      <%} else {%> <%categories.forEach( category => {%> <%if(pageName ==
+      category.title){%>
+      <div class="text-center hero-container">
+        <img
+          class="d-block w-100 hero-image"
+          src="/images/banner-<%=category.slug%>.jpg"
+        />
+        <div class="hero-text">
+          <h1><%=pageName%></h1>
+        </div>
+      </div>
+      <%}%> <%})%> <%}%>
+    
+      <hr class="gradient-style" />
+      <!-- Contents -->
+      <div class="row pl-4 pr-4">
+        <% products.forEach((product) => { %>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-index-box">
+          <div class="single-product d-flex flex-column h-100">
+            <a
+              class="title-link"
+              href="/products/<%=product.category.slug%>/<%=product._id%>"
+            >
+              <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"
+            /></a>
+            <div class="product-info">
+              <a
+                class="title-link"
+                href="/products/<%=product.category.slug%>/<%=product._id%>"
+              >
+                <h6 class="mt-2 mb-2"><%= product.title %></h6></a
+              >
+              <div class="price">$<%= product.price %></div>
+            </div>
+            <% if(product.available) {%>
+            <a
+              href="/add-to-cart/<%=product._id%>"
+              class="btn btn-block btn-secondary button-style mt-auto mb-2"
+            >
+              Add to Shopping Cart
+            </a>
+            <% } else { %>
+            <a
+              href="#"
+              class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+            >
+              Sold out
+            </a>
+            <%} %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      
+    </div>
+
+<!-- Footer -->
+<footer>
+
+    <section id="contact" class="mt-5">
+      <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12 white-links">
+          <p class="footer-title">About Us</p>
+          <ul id="footer-list">
+            <li>
+              <a href="/public/about-demo/about-us.html">About Our Store</a>
+            </li>
+            <li>
+              <a href="/public/about-demo/contact-us.html">Contact Us</a>
+            </li>
+            <li>
+              <a href="/public/about-demo/shipping-policy.html">Shipping Policy</a>
+            </li>
+            <li>
+              <a href="/public/about-demo/careers.html">Careers</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12 white-links mb-2">
+          <p class="footer-title">Follow Us</p>
+          <a href="https://facebook.com/" target="_blank">
+            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            Facebook
+          </a>
+
+          <a id="profile-link" target="_blank" href="https://instagram.com/">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+            Instagram
+          </a>
+
+          <a href="https://twitter.com/" target="_blank">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            Twitter
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bottom-footer">
+      <div class="row">
+        <div class="col-12 mr-auto">
+          © 108Express 2022 **This is just a fake website for the College Of Managment. All the products and
+          contact details given
+          are
+          not real.
+        </div>
+      </div>
+    </section>
+
+  </footer>
+
+</body>
+
+</html>
