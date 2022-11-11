@@ -18,7 +18,7 @@ exports.renderAllProducts = async (req, res) => {
 
         const count = await Product.count();
 
-        res.render("shop/index", {
+        res.render("shop/category", {
             pageName: "All Products",
             products,
             successMsg,
@@ -51,7 +51,7 @@ exports.renderSearchForProducts = async (req, res) => {
             .exec();
         const count = products?.length;
 
-        res.render("shop/index", {
+        res.render("shop/category", {
             pageName: "Search Results",
             products,
             successMsg,
@@ -82,7 +82,7 @@ exports.renderCategoryBySlug = async (req, res) => {
 
         const count = await Product.count({ category: foundCategory.id });
 
-        res.render("shop/index", {
+        res.render("shop/category", {
             pageName: foundCategory.title,
             currentCategory: foundCategory,
             products: allProducts,
