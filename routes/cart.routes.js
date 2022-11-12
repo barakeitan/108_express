@@ -22,6 +22,9 @@ router.get("/reduce/:id", cartController.reduceProductFromShoppingCart);
 // GET: remove all instances of a single product from the cart
 router.get("/removeAll/:id", cartController.removeAllByProductId);
 
+// GET: remove all products from the cart
+router.get("/empty-cart", cartController.emptyCart);
+
 // GET: checkout form with csrf token
 router.get("/checkout", middleware.isLoggedIn, cartController.renderCheckoutForShoppingCart);
 
