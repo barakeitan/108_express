@@ -189,6 +189,39 @@ exports.removeAllByProductId = async function (req, res, next) {
     }
   }
 
+  exports.emptyCart = async (req, res) => {
+    let cart;
+    try {
+      if (req.user) {
+        cart = await Cart.findOne({ user: req.user._id });
+      } else if (req.session.cart) {
+        cart = await new Cart(req.session.cart);
+      }
+     
+      let len = cart.items.length;
+      for(let i=0; i<len; i++)
+      {
+        cart.totalQty -= cart.items[0].qty;
+        cart.totalCost -= cart.items[0].price;
+        await cart.items.remove({ _id: cart.items[0]._id });
+      }
+
+      //save the cart it only if user is logged in
+      if (req.user) {
+        await cart.save();
+      }
+      //delete cart if qty is 0
+      if (cart.totalQty <= 0) {
+        req.session.cart = null;
+        await Cart.findByIdAndRemove(cart._id);
+      }
+      res.redirect(req.headers.referer);
+    } catch (err) {
+      console.log(err.message);
+      res.redirect("/");
+    }
+  }
+
   exports.renderCheckoutForShoppingCart = async (req, res) => {
     const errorMsg = req.flash("error")[0];
   
