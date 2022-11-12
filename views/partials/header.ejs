@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12 col-xs-12 right-nav">
-                    <ul>
+                    <ul id="user-right-nav">
                         <li>
                             <a href="/shop/shopping-cart">
                                 <i class="fas fa-shopping-cart"></i> <% if(session.cart) { %>
@@ -57,17 +57,17 @@
                             </a>
                         </li>
                         <% if (login) { %>
-                        <li>
-                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                        <div class="dropdown" >
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user"></i> Welcome <%=currentUser.username%>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/user/profile">User Account</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/user/logout">Logout</a>
-                            </div>
-                        </li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/profile">User Account</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                            </ul>
+                        </div>
                         <% } else {%>
                         <li>
                             <a href="/user/signup"> Sign Up</a>

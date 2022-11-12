@@ -206,6 +206,9 @@ hr.gradient-style {
   margin: 1em auto;
 }
 
+#user-right-nav{
+  display: contents;
+}
 /* PRODUCTS */
 
 .title-link {
