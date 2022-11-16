@@ -72,7 +72,12 @@
 <hr>
   <div class="row mt-4 mr-auto">
     <div class="col-md-11 col-sm-12 m-auto">
-      <strong>Total: <%= cart.totalCost %>$</strong>
+      <strong>Total: <span id="amount_checkout"><%= cart.totalCost %></span><span id="symbol"></span></strong>
+      <select name="currency-names" id="currency_checkout">
+        <option value="USD">USD</option>
+        <option value="ILS">ILS</option>
+        <option value="EUR">EUR</option>
+    </select>
     </div>
   </div>
   <div class="row mt-2 mr-auto">
