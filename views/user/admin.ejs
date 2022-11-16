@@ -2,7 +2,7 @@
 <%- include ("../partials/navbar") %>
 
 <div class="container cart">
-    <% if (orders != null ) { %>
+    <% if (orders.length ) { %>
     <div class="row">
         <div class="col-md-11 col-sm-12 m-auto table-responsive">
             <table class="table text-center">
@@ -35,6 +35,9 @@
             </table>
         </div>
     </div>
+    <%} else { %>
+        <h3 class="text-center" >There are no orders in the system yet</h3>
+      <%} %>
 </div>
 
 <hr>
