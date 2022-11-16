@@ -31,7 +31,7 @@ passport.use(
         }
         const newUser = await new User();
         newUser.email = email;
-        newUser.password = newUser.encryptPassword(password);
+        newUser.password = await newUser.encryptPassword(password);
         newUser.username = req.body.name;
         await newUser.save();
         return done(null, newUser);
