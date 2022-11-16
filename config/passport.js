@@ -57,7 +57,8 @@ passport.use(
         if (!user) {
           return done(null, false, { message: "User doesn't exist" });
         }
-        if (!user.validPassword(password)) {
+        const isValidPassword = await user.validPassword(password);
+        if (!isValidPassword) {
           return done(null, false, { message: "Wrong password" });
         }
         return done(null, user);
