@@ -226,7 +226,7 @@ exports.removeAllByProductId = async function (req, res, next) {
     const errorMsg = req.flash("error")[0];
   
     if (!req.session.cart) {
-      return res.redirect("/shopping-cart");
+      return res.redirect("/shop/shopping-cart");
     }
     //load the cart with the session's cart's id from the db
     const cart = await Cart.findById(req.session.cart._id);
@@ -241,28 +241,29 @@ exports.removeAllByProductId = async function (req, res, next) {
   
   exports.handleCheckoutLogic = async (req, res) => {
     if (!req.session.cart) {
-      return res.redirect("/shopping-cart");
+      return res.redirect("/shop/shopping-cart");
     }
-    const cart = await Cart.findById(req.session.cart._id);
-    const order = new Order({
-      user: req.user,
-      cart: {
-        totalQty: cart.totalQty,
-        totalCost: cart.totalCost,
-        items: cart.items,
-      },
-      address: req.body.address,
-    });
-    order.save(async (err, newOrder) => {
-      if (err) {
+    try {
+        const cart = await Cart.findById(req.session.cart._id);
+        const order = new Order({
+          user: req.user,
+          cart: {
+            totalQty: cart.totalQty,
+            totalCost: cart.totalCost,
+            items: cart.items,
+          },
+          address: req.body.address,
+        });
+        await order.save()
+        await Cart.findByIdAndDelete(cart._id);
+          req.flash("success", "Successfully purchased");
+          req.session.cart = null;
+          res.redirect("/user/profile");
+        
+    } catch (error) {
         console.log(err);
-        return res.redirect("/checkout");
-      }
-      await Cart.findByIdAndDelete(cart._id);
-      req.flash("success", "Successfully purchased");
-      req.session.cart = null;
-      res.redirect("/user/profile");
-    });
+        return res.redirect("/shop/checkout");
+    }
 }
   
 // create products array to store the info of each product in the cart
