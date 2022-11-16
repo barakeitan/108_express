@@ -17,6 +17,11 @@ const orderSchema = Schema({
       default: 0,
       required: true,
     },
+    currency: {
+      type: String,
+      default: "USD", 
+      enum: ["USD", "ILS", "EUR"]
+    },
     items: [
       {
         productId: {
@@ -46,10 +51,6 @@ const orderSchema = Schema({
   },
   zipCode: {
     type: Number
-  },
-  paymentId: {
-    type: String,
-    required: true,
   },
   createdAt: {
     type: Date,
