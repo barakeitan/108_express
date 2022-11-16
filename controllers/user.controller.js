@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Order = require('../models/order');
 
 exports.renderSignUp = (req, res) => {
     const errorMsg = req.flash("error")[0];
@@ -92,9 +93,18 @@ exports.renderUserProfile = async (req, res) => {
 }
 
 exports.handleLogOut = (req, res) => {
-    req.logout();
-    req.session.cart = null;
-    res.redirect("/");
+    req.logout(function(err) {
+        if (err)
+        {
+             console.log('error logging out') 
+             // TODO: add flash with error logout failed
+        }
+        else
+        {
+            req.session.cart = null;
+            res.redirect("/");
+        }
+      });
 }
 
 

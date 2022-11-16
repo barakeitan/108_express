@@ -17,7 +17,7 @@ const csrfProtection = csrf();
 router.use(csrfProtection);
 
 // GET: display the signup form with csrf token
-router.get("/signup", middleware.isNotLoggedIn,userController.renderSignIn)
+router.get("/signup", middleware.isNotLoggedIn,userController.renderSignUp)
 
 
 // POST: handle the signup logic
@@ -35,7 +35,7 @@ router.post(
   ],userController.handleSignUp);
 
 // GET: display the signin form with csrf token
-router.get("/signin", middleware.isNotLoggedIn)
+router.get("/signin", middleware.isNotLoggedIn, userController.renderSignIn)
 
 // POST: handle the signin logic
 router.post(
