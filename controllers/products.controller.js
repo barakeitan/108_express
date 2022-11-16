@@ -3,6 +3,8 @@ const router = Router();
 const Product = require("../models/product");
 const Category = require("../models/category");
 const moment = require("moment");
+const { users, broadcast } = require("../wsServer");
+const twitterController = require("./twitter.controller");
 
 exports.renderAllProducts = async (req, res) => {
     const successMsg = req.flash("success")[0];
@@ -115,4 +117,10 @@ exports.renderProductBySlugAndId = async (req, res) => {
         console.log(error);
         return res.redirect("/");
     }
+}
+
+exports.handleAddProduct = async (req, res) => {
+    broadcast("The site manager added a new product");
+    twitterController.postTweet();
+    return;
 }
