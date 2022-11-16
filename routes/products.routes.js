@@ -14,4 +14,6 @@ router.get("/:slug", productsController.renderCategoryBySlug);
 // GET: display a certain product by its id
 router.get("/:slug/:id", productsController.renderProductBySlugAndId);
 
+// POST: handle add new product logic
+router.post("/add-product", productsController.handleAddProduct);
 module.exports = router;
