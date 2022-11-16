@@ -15,4 +15,11 @@ middlewareObject.isLoggedIn = (req, res, next) => {
   res.redirect("/user/signin");
 };
 
+middlewareObject.isAdmin = (req, res, next) => {
+  if (res.locals.currentUser.userType === 'Admin') {
+    return next();
+  }
+  res.redirect("/");
+};
+
 module.exports = middlewareObject;
