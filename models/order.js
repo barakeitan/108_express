@@ -52,10 +52,6 @@ const orderSchema = Schema({
   zipCode: {
     type: Number
   },
-  // paymentId: {
-  //   type: String,
-  //   required: true,
-  // },
   createdAt: {
     type: Date,
     default: Date.now,
