@@ -252,7 +252,6 @@ exports.removeAllByProductId = async function (req, res, next) {
         items: cart.items,
       },
       address: req.body.address,
-      paymentId: charge.id,
     });
     order.save(async (err, newOrder) => {
       if (err) {
