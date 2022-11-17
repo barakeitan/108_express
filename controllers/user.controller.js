@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Order = require('../models/order');
+const Cart = require('../models/cart');
 
 exports.renderSignUp = (req, res) => {
     const errorMsg = req.flash("error")[0];
@@ -107,5 +108,15 @@ exports.handleLogOut = (req, res) => {
       });
 }
 
+exports.renderAdminPage = async(req, res) => {
+    const orders = await Order.find({}).exec();
+
+    res.render("user/admin", {
+        // csrfToken: req.csrfToken(),
+        // errorMsg: req.flash("error")[0],
+        orders:orders,
+        pageName: "Admin",
+    });
+}
 
 

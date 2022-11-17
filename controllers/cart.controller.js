@@ -6,16 +6,16 @@ const Order = require("../models/order");
 
 exports.renderShopHomePage = async (req, res) => {
     try {
-      const products = await Product.find({raw: true})
-        .sort("-createdAt")
-        .populate("category")
-        .exec();
-      const categories = await Category.find({raw:true}).exec();
-    
-      res.render("shop/home", { pageName: "Home", products,categories });
+        const products = await Product.find({ raw: true })
+            .sort("-createdAt")
+            .populate("category")
+            .exec();
+        const categories = await Category.find({ raw: true }).exec();
+
+        res.render("shop/home", { pageName: "Home", products, categories });
     } catch (error) {
-      console.log(error);
-      res.redirect("/");
+        console.log(error);
+        res.redirect("/");
     }
 }
 
@@ -117,41 +117,41 @@ exports.reduceProductFromShoppingCart = async (req, res) => {
     const productId = req.params.id;
     let cart;
     try {
-      if (req.user) {
-        cart = await Cart.findOne({ user: req.user._id });
-      } else if (req.session.cart) {
-        cart = await new Cart(req.session.cart);
-      }
-  
-      // find the item with productId
-      let itemIndex = cart.items.findIndex((p) => p.productId == productId);
-      if (itemIndex > -1) {
-        // find the product to find its price
-        const product = await Product.findById(productId);
-        // if product is found, reduce its qty
-        cart.items[itemIndex].qty--;
-        cart.items[itemIndex].price -= product.price;
-        cart.totalQty--;
-        cart.totalCost -= product.price;
-        // if the item's qty reaches 0, remove it from the cart
-        if (cart.items[itemIndex].qty <= 0) {
-          await cart.items.remove({ _id: cart.items[itemIndex]._id });
-        }
-        req.session.cart = cart;
-        //save the cart it only if user is logged in
         if (req.user) {
-          await cart.save();
+            cart = await Cart.findOne({ user: req.user._id });
+        } else if (req.session.cart) {
+            cart = await new Cart(req.session.cart);
         }
-        //delete cart if qty is 0
-        if (cart.totalQty <= 0) {
-          req.session.cart = null;
-          await Cart.findByIdAndRemove(cart._id);
+
+        // find the item with productId
+        let itemIndex = cart.items.findIndex((p) => p.productId == productId);
+        if (itemIndex > -1) {
+            // find the product to find its price
+            const product = await Product.findById(productId);
+            // if product is found, reduce its qty
+            cart.items[itemIndex].qty--;
+            cart.items[itemIndex].price -= product.price;
+            cart.totalQty--;
+            cart.totalCost -= product.price;
+            // if the item's qty reaches 0, remove it from the cart
+            if (cart.items[itemIndex].qty <= 0) {
+                await cart.items.remove({ _id: cart.items[itemIndex]._id });
+            }
+            req.session.cart = cart;
+            //save the cart it only if user is logged in
+            if (req.user) {
+                await cart.save();
+            }
+            //delete cart if qty is 0
+            if (cart.totalQty <= 0) {
+                req.session.cart = null;
+                await Cart.findByIdAndRemove(cart._id);
+            }
         }
-      }
-      res.redirect(req.headers.referer);
+        res.redirect(req.headers.referer);
     } catch (err) {
-      console.log(err.message);
-      res.redirect("/");
+        console.log(err.message);
+        res.redirect("/");
     }
 }
 
@@ -159,112 +159,112 @@ exports.removeAllByProductId = async function (req, res, next) {
     const productId = req.params.id;
     let cart;
     try {
-      if (req.user) {
-        cart = await Cart.findOne({ user: req.user._id });
-      } else if (req.session.cart) {
-        cart = await new Cart(req.session.cart);
-      }
-      //find the item with productId
-      let itemIndex = cart.items.findIndex((p) => p.productId == productId);
-      if (itemIndex > -1) {
-        //find the product to find its price
-        cart.totalQty -= cart.items[itemIndex].qty;
-        cart.totalCost -= cart.items[itemIndex].price;
-        await cart.items.remove({ _id: cart.items[itemIndex]._id });
-      }
-      req.session.cart = cart;
-      //save the cart it only if user is logged in
-      if (req.user) {
-        await cart.save();
-      }
-      //delete cart if qty is 0
-      if (cart.totalQty <= 0) {
-        req.session.cart = null;
-        await Cart.findByIdAndRemove(cart._id);
-      }
-      res.redirect(req.headers.referer);
+        if (req.user) {
+            cart = await Cart.findOne({ user: req.user._id });
+        } else if (req.session.cart) {
+            cart = await new Cart(req.session.cart);
+        }
+        //find the item with productId
+        let itemIndex = cart.items.findIndex((p) => p.productId == productId);
+        if (itemIndex > -1) {
+            //find the product to find its price
+            cart.totalQty -= cart.items[itemIndex].qty;
+            cart.totalCost -= cart.items[itemIndex].price;
+            await cart.items.remove({ _id: cart.items[itemIndex]._id });
+        }
+        req.session.cart = cart;
+        //save the cart it only if user is logged in
+        if (req.user) {
+            await cart.save();
+        }
+        //delete cart if qty is 0
+        if (cart.totalQty <= 0) {
+            req.session.cart = null;
+            await Cart.findByIdAndRemove(cart._id);
+        }
+        res.redirect(req.headers.referer);
     } catch (err) {
-      console.log(err.message);
-      res.redirect("/");
+        console.log(err.message);
+        res.redirect("/");
     }
-  }
+}
 
-  exports.emptyCart = async (req, res) => {
+exports.emptyCart = async (req, res) => {
     let cart;
     try {
-      if (req.user) {
-        cart = await Cart.findOne({ user: req.user._id });
-      } else if (req.session.cart) {
-        cart = await new Cart(req.session.cart);
-      }
-     
-      let len = cart.items.length;
-      for(let i=0; i<len; i++)
-      {
-        cart.totalQty -= cart.items[0].qty;
-        cart.totalCost -= cart.items[0].price;
-        await cart.items.remove({ _id: cart.items[0]._id });
-      }
+        if (req.user) {
+            cart = await Cart.findOne({ user: req.user._id });
+        } else if (req.session.cart) {
+            cart = await new Cart(req.session.cart);
+        }
 
-      //save the cart it only if user is logged in
-      if (req.user) {
-        await cart.save();
-      }
-      //delete cart if qty is 0
-      if (cart.totalQty <= 0) {
-        req.session.cart = null;
-        await Cart.findByIdAndRemove(cart._id);
-      }
-      res.redirect(req.headers.referer);
+        let len = cart.items.length;
+        for (let i = 0; i < len; i++) {
+            cart.totalQty -= cart.items[0].qty;
+            cart.totalCost -= cart.items[0].price;
+            await cart.items.remove({ _id: cart.items[0]._id });
+        }
+
+        //save the cart it only if user is logged in
+        if (req.user) {
+            await cart.save();
+        }
+        //delete cart if qty is 0
+        if (cart.totalQty <= 0) {
+            req.session.cart = null;
+            await Cart.findByIdAndRemove(cart._id);
+        }
+        res.redirect(req.headers.referer);
     } catch (err) {
-      console.log(err.message);
-      res.redirect("/");
+        console.log(err.message);
+        res.redirect("/");
     }
-  }
+}
 
-  exports.renderCheckoutForShoppingCart = async (req, res) => {
+exports.renderCheckoutForShoppingCart = async (req, res) => {
     const errorMsg = req.flash("error")[0];
-  
+
     if (!req.session.cart) {
-      return res.redirect("/shopping-cart");
+        return res.redirect("/shop/shopping-cart");
     }
     //load the cart with the session's cart's id from the db
     const cart = await Cart.findById(req.session.cart._id);
-  
+
     res.render("shop/checkout", {
-      total: cart?.totalCost,
-      csrfToken: req.csrfToken(),
-      errorMsg,
-      pageName: "Checkout",
-    });
-  }
-  
-  exports.handleCheckoutLogic = async (req, res) => {
-    if (!req.session.cart) {
-      return res.redirect("/shopping-cart");
-    }
-    const cart = await Cart.findById(req.session.cart._id);
-    const order = new Order({
-      user: req.user,
-      cart: {
-        totalQty: cart.totalQty,
-        totalCost: cart.totalCost,
-        items: cart.items,
-      },
-      address: req.body.address,
-    });
-    order.save(async (err, newOrder) => {
-      if (err) {
-        console.log(err);
-        return res.redirect("/checkout");
-      }
-      await Cart.findByIdAndDelete(cart._id);
-      req.flash("success", "Successfully purchased");
-      req.session.cart = null;
-      res.redirect("/user/profile");
+        total: cart?.totalCost,
+        csrfToken: req.csrfToken(),
+        errorMsg,
+        pageName: "Checkout",
     });
 }
-  
+
+exports.handleCheckoutLogic = async (req, res) => {
+    if (!req.session.cart) {
+        return res.redirect("/shop/shopping-cart");
+    }
+    try {
+        const cart = await Cart.findById(req.session.cart._id);
+        const order = new Order({
+            user: req.user,
+            cart: {
+                totalQty: cart.totalQty,
+                totalCost: cart.totalCost,
+                items: cart.items,
+            },
+            address: req.body.address,
+        });
+        await order.save()
+        await Cart.findByIdAndDelete(cart._id);
+        req.flash("success", "Successfully purchased");
+        req.session.cart = null;
+        res.redirect("/user/profile");
+
+    } catch (error) {
+        console.log(err);
+        return res.redirect("/shop/checkout");
+    }
+}
+
 // create products array to store the info of each product in the cart
 async function productsFromCart(cart) {
     let products = []; // array of objects

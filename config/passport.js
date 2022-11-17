@@ -31,7 +31,7 @@ passport.use(
         }
         const newUser = await new User();
         newUser.email = email;
-        newUser.password = newUser.encryptPassword(password);
+        newUser.password = await newUser.encryptPassword(password);
         newUser.username = req.body.name;
         await newUser.save();
         return done(null, newUser);
@@ -57,7 +57,8 @@ passport.use(
         if (!user) {
           return done(null, false, { message: "User doesn't exist" });
         }
-        if (!user.validPassword(password)) {
+        const isValidPassword = await user.validPassword(password);
+        if (!isValidPassword) {
           return done(null, false, { message: "Wrong password" });
         }
         return done(null, user);

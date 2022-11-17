@@ -2,7 +2,7 @@
 <%- include ("../partials/navbar") %>
 
 <div class="container cart">
-    <% if (orders != null ) { %>
+    <% if (orders.length ) { %>
     <div class="row">
         <div class="col-md-11 col-sm-12 m-auto table-responsive">
             <table class="table text-center">
@@ -35,9 +35,14 @@
             </table>
         </div>
     </div>
+    <%} else { %>
+        <h3 class="text-center" >There are no orders in the system yet</h3>
+      <%} %>
 </div>
 
 <hr>
+<br/>
+<br/>
 
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" id="scatter-graph-container">
@@ -47,6 +52,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" id="bar-graph-container">
         <svg id="bar-svg"></svg>
     </div>
+    <script src="https://d3js.org/d3.v4.js"></script>
     <script src="/js/connected-scatter-graph.js"></script>
     <script src="/js/bar-graph.js"></script>
 

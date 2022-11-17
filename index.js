@@ -58,6 +58,7 @@ app.use(passport.session());
 app.use(async (req, res, next) => {
   try {
     res.locals.login = req.isAuthenticated();
+    res.locals.isAdmin = res.locals.login && req.user?.userType === 'Admin';
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
     const categories = await Category.find({}).sort({ title: 1 }).exec();
