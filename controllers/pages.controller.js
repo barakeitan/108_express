@@ -1,4 +1,6 @@
+const { response } = require("express");
 const nodemailer = require("nodemailer");
+const Location = require("../models/location")
 
 exports.renderAboutUs = (req, res) => {
     res.render("pages/about-us", {
@@ -29,6 +31,20 @@ exports.renderContactUs = (req, res) => {
     });
 }
 
+exports.HandleMapLocations = async (req, res) => {
+    const successMsg = req.flash("success")[0];
+    const errorMsg = req.flash("error")[0];
+
+    try
+    {
+        const locations = await Location.find({});
+        res.status(200).send({locations:locations});
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
 
 exports.handleContactUs = (req, res) => {
     // instantiate the SMTP server

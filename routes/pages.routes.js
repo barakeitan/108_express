@@ -23,6 +23,8 @@ router.get("/careers", pagesController.renderCareers);
 //GET: display contact us page and form with csrf tokens
 router.get("/contact-us", pagesController.renderContactUs);
 
+router.get("/map-location", pagesController.HandleMapLocations);
+
 //POST: handle contact us form logic using nodemailer
 router.post(
   "/contact-us",
