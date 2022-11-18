@@ -42,6 +42,9 @@ const productSchema = Schema({
     type: Date,
     default: Date.now,
   },
+  video: {
+    type: String
+  }
 });
 
 const Product = mongoose.model("Product", productSchema);

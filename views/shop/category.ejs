@@ -77,8 +77,12 @@
           class="title-link"
           href="/products/<%=product.category.slug%>/<%=product._id%>"
         >
-          <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"
-        /></a>
+        <% if(product.video) {%>
+          <iframe width="381" height="320" src="<%=product.video%>" frameborder="0" allowfullscreen></iframe>
+          <% } else { %>
+            <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"/>
+          </a>
+        <%} %>
         <div class="product-info">
           <a
             class="title-link"

@@ -120,7 +120,7 @@ exports.renderProductBySlugAndId = async (req, res) => {
 }
 
 exports.handleAddProduct = async (req, res) => {
-    broadcast("The site manager added a new product");
+    broadcast("new product has been added to the shop!");
     twitterController.postTweet();
     return;
 }
