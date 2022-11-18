@@ -251,6 +251,7 @@ exports.handleCheckoutLogic = async (req, res) => {
                 totalCost: cart.totalCost,
                 items: cart.items,
             },
+            cardholder:req.body.cardholder,
             address: req.body.address,
         });
         await order.save()
@@ -260,7 +261,7 @@ exports.handleCheckoutLogic = async (req, res) => {
         res.redirect("/user/profile");
 
     } catch (error) {
-        console.log(err);
+        console.log(error);
         return res.redirect("/shop/checkout");
     }
 }
