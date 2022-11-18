@@ -61,7 +61,7 @@ app.use(async (req, res, next) => {
     res.locals.isAdmin = res.locals.login && req.user?.userType === 'Admin';
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
-    const categories = await Category.find({}).sort({ title: 1 }).exec();
+    const categories = await Category.find({}).sort({ _id: 1 }).exec();
     res.locals.categories = categories;
     next();
   } catch (error) {
