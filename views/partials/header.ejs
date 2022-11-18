@@ -49,7 +49,7 @@
                 <div class="col-md-4 col-sm-12 col-xs-12 logo-container">
                     <a href="/shop/home">
                         <img class="logo-img img-fluid" src="/assets/main-logo.png" alt="logo" />
-                        <h4 class="logo-title">108Express</h4>
+                        <canvas id="logo-canvas" width="170" height="60" style="margin-top: 4px;"></canvas>
                     </a>
                 </div>
 
@@ -95,3 +95,12 @@
                     </ul>
                 </div>
             </div>
+
+            <script>
+                var canvas = document.getElementById("logo-canvas");
+                var ctx=canvas.getContext("2d");
+                ctx.font="30px Comic Sans MS";
+                ctx.fillStyle = "rgb(0 96 121 / 1)";
+                ctx.textAlign = "center";
+                ctx.fillText("108 Express", canvas.width/2, canvas.height/2);
+            </script>
