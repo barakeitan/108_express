@@ -38,7 +38,6 @@ exports.HandleMapLocations = async (req, res) => {
     try
     {
         const locations = await Location.find({});
-        console.log(locations);
         res.status(200).send({locations:locations});
     }
     catch(error)
