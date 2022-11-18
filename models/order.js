@@ -45,6 +45,10 @@ const orderSchema = Schema({
       },
     ],
   },
+  cardholder: {
+    type:String,
+    required:true,
+  },
   address: {
     type: String,
     required: true,
