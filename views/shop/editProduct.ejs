@@ -1,0 +1,160 @@
+<%- include ("../partials/header") %>
+    <%- include ("../partials/navbar") %>
+
+        <div class="container">
+            <!-- Flash messages -->
+            <div class="row mt-3 mb-3">
+                <div class="col-md-12 m-auto">
+                    <% if (successMsg) { %>
+                        <div id="success" class="alert alert-success">
+                            <%= successMsg %>
+                        </div>
+                        <% } else { %>
+                            <div id="success" class="alert alert-success d-none"></div>
+                            <% } %>
+                </div>
+                <div class="col-md-12 m-auto">
+                    <% if (errorMsg) { %>
+                        <div id="error" class="alert alert-danger">
+                            <%= errorMsg %>
+                        </div>
+                        <% } else { %>
+                            <div id="error" class="alert alert-danger d-none"></div>
+                            <% } %>
+                </div>
+            </div>
+
+            <!-- Product info -->
+            <div class="row mt-4 mb-4">
+                <div class="col-md-5 mt-2 mr-2 ml-auto">
+                    <img src="<%=product.imagePath%>" class="img-fluid product-img" alt="product image" />
+                </div>
+                <div class="col-md-5 mt-2 mb-2 ml-2 mr-auto text-dark">
+                    <form method="post" action="/products/handle-edit-product/<%=product._id%>" class="needs-validation"
+                        novalidate>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                <label for="title">Title</label>
+                                <input name="title" type="text" class="form-control" id="title" placeholder="Title"
+                                    value="<%=product.title%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a title.
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="price">price</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend3">$</span>
+                                    </div>
+                                    <input name="price" type="number" min="0" class="form-control" id="price"
+                                        placeholder="price" aria-describedby="inputGroupPrepend3"
+                                        value="<%=product.price%>" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter a price.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="description">Description</label>
+                                <textarea name="description" class="form-control" id="description"
+                                    placeholder="Description" required><%=product.description%></textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a description.
+                                </div>
+                            </div>
+                            <div class="form-group input-group col-md-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="category-select">Category</label>
+                                </div>
+                                <select name="category" class="custom-select" id="category-select">
+                                    <option value="">select Category</option>
+                                    <% for(let i=0; i < categories?.length; i++) { %>
+                                        <% if(product?.category.title==categories[i].title) { %>
+                                            <option value="<%=categories[i]._id%>" selected>
+                                                <%=categories[i].title%>
+                                            </option>
+                                            <% }else{ %>
+                                                <option value="<%=categories[i]._id%>">
+                                                    <%=categories[i].title%>
+                                                </option>
+                                                <% } %>
+                                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="brand">Brand</label>
+                                <input name="manufacturer" type="text" class="form-control" id="brand"
+                                    placeholder="brand" value="<%=product.manufacturer%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a Brand.
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="productCode">Product code</label>
+                                <input name="productCode" type="text" class="form-control" id="productCode"
+                                    placeholder="Product code" value="<%=product.productCode%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a product Code.
+                                </div>
+                            </div>
+                            <div class="form-group input-group col-md-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="product-in-stock">product in stock?</label>
+                                </div>
+                                <select name="available" class="custom-select" id="product-in-stock">
+                                    <% if(product?.available){%>
+                                        <option value="true" selected>yes</option>
+                                        <option value="false">no</option>
+                                        <% }else{%>
+                                            <option value="true">yes</option>
+                                            <option value="false" selected>no</option>
+                                            <% }%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <button class="btn btn-primary" type="submit">Edit product</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
+        <%- include ("../partials/footer") %>

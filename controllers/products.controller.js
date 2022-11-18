@@ -94,6 +94,7 @@ exports.renderCategoryBySlug = async (req, res) => {
             breadcrumbs: req.breadcrumbs,
             home: "/products/" + req.params.slug.toString() + "/?",
             pages: Math.ceil(count / perPage),
+            isAdmin: res.locals.isAdmin
         });
     } catch (error) {
         console.log(error);
@@ -119,8 +120,69 @@ exports.renderProductBySlugAndId = async (req, res) => {
     }
 }
 
-exports.handleAddProduct = async (req, res) => {
-    broadcast("The site manager added a new product");
-    twitterController.postTweet();
-    return;
+exports.renderCreateNewProduct = async (req, res) => {
+    const successMsg = req.flash("success")[0];
+    const errorMsg = req.flash("error")[0];
+    const categories =  res.locals.categories;
+
+    res.render('shop/createProduct',{
+        pageName: "New Product",
+        successMsg:successMsg,
+        errorMsg:errorMsg,
+        categories:categories
+    });
 }
+
+exports.handleCreateNewProduct = async (req, res) => {
+    try {
+        broadcast("The site manager added a new product");
+        twitterController.postTweet();
+        const product = new Product({...req.body});
+        await product.save();
+        res.redirect("/");
+    } catch (error) {
+        console.log(error);
+        res.redirect("/");
+    }
+}
+
+exports.handleDeleteProduct = async (req, res) => {
+    const productId = req.params.productId;
+    try {
+        await Product.findByIdAndDelete(productId);
+        req.flash('success', "product deleted successfully");
+        res.redirect("/products");
+    } catch (err) {
+        console.log(err.message);
+        res.redirect("/");
+    }
+}
+
+exports.renderEditProduct = async (req, res) => {
+    const successMsg = req.flash("success")[0];
+    const errorMsg = req.flash("error")[0];
+
+    const product = await Product.findById(req.params.productId).populate("category").exec();
+    const categories =  res.locals.categories;
+    res.render("shop/editProduct",{
+        pageName: "Edit Product",
+        successMsg:successMsg,
+        errorMsg:errorMsg,
+        product:product,
+        categories:categories
+    });
+};
+
+exports.handleEditProduct = async (req, res) => {
+    try {
+        await Product.findByIdAndUpdate(req.params.productId, { ...req.body }).exec();
+        req.flash('success', "product updated successfully");
+        res.redirect(`/products/${req.body.category}/${req.params.productId}`)
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+};
+
+
+
