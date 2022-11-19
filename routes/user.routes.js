@@ -57,6 +57,10 @@ router.get("/profile", middleware.isLoggedIn,userController.renderUserProfile);
 // GET: logout
 router.get("/logout", middleware.isLoggedIn,userController.handleLogOut);
 
-router.get("/admin", middleware.isAdmin, userController.renderAdminPage)
+router.get("/admin", middleware.isAdmin, userController.renderAdminPage);
+
+router.get("/admin/bar-data", middleware.isAdmin, userController.getBarGraphData);
+
+router.get("/admin/scatter-data", middleware.isAdmin, userController.getScatterGraphData);
 
 module.exports = router;
