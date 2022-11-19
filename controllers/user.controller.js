@@ -51,15 +51,19 @@ exports.handleSignIn = async (req, res) => {
     try {
         // cart logic when the user logs in
         let cart = await Cart.findOne({ user: req.user._id });
-        // if there is a cart session and user has no cart, save it to the user's cart in db
-        if (req.session.cart && !cart) {
-            const cart = await new Cart(req.session.cart);
-            cart.user = req.user._id;
-            await cart.save();
-        }
+        // console.log("req.user._id: " ,req.user._id);
+        // console.log("cart = ",cart);
+        // console.log("req.session.cart: " ,req.session);
         // if user has a cart in db, load it to session
         if (cart) {
             req.session.cart = cart;
+        }
+
+        // if there is a cart session and user has no cart, save it to the user's cart in db
+        if (req.session.cart && !cart) {
+            cart = await new Cart({...req.session.cart});
+            cart.user = req.user._id;
+            await cart.save();
         }
         // redirect to old URL before signing in
         if (req.session.oldUrl) {
@@ -67,7 +71,7 @@ exports.handleSignIn = async (req, res) => {
             req.session.oldUrl = null;
             res.redirect(oldUrl);
         } else {
-            res.redirect("/user/profile");
+            res.redirect("/shop/shopping-cart");
         }
     } catch (err) {
         console.log(err);

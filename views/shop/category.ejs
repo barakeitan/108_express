@@ -110,9 +110,7 @@
                 <%}%>
         
                   <% if(product?.available) {%>
-                    <a href="/shop/add-to-cart/<%=product?._id%>" class="btn btn-block btn-success button-style mt-auto mb-2">
-                      Add To Cart
-                    </a>
+                    <button class="btn btn-block btn-success button-style mt-auto mb-2" onclick="addToCart(`<%=product?._id%>`)">Add To Cart</button>
                     <% } else { %>
                       <a href="#" class="btn btn-block btn-secondary button-style mt-auto mb-2">
                         Sold out

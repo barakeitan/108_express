@@ -136,7 +136,7 @@ exports.renderCreateNewProduct = async (req, res) => {
 exports.handleCreateNewProduct = async (req, res) => {
     try {
         broadcast("The site manager added a new product");
-        twitterController.postTweet();
+        twitterController.postTweet(`new product  ${req.body.title} has been added to the shop with brand  ${req.body.manufacturer}!`);
         const product = new Product({...req.body});
         await product.save();
         res.redirect("/");

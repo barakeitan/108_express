@@ -67,11 +67,18 @@ exports.addProductToCart = async (req, res) => {
             await cart.save();
         }
         req.session.cart = cart;
-        req.flash("success", "Item added to the shopping cart");
-        res.redirect(req.headers.referer);
+
+        res.status(200).send({
+            message: "Item added to the shopping cart",
+            totalQty: cart.totalQty,
+            productQty: itemIndex > -1 ? cart.items[itemIndex].qty : 1,
+            productPrice: product.price,
+            productTotalPrice: itemIndex > -1 ? cart.items[itemIndex].price : product.price,
+            cartTotalPrice: cart.totalCost
+        });
     } catch (err) {
         console.log(err.message);
-        res.redirect("/");
+        res.status(500).json({ message: err.message });
     }
 }
 
@@ -123,12 +130,12 @@ exports.reduceProductFromShoppingCart = async (req, res) => {
             cart = await new Cart(req.session.cart);
         }
 
+        // find the product to find its price
+        const product = await Product.findById(productId);
+
         // find the item with productId
         let itemIndex = cart.items.findIndex((p) => p.productId == productId);
         if (itemIndex > -1) {
-            // find the product to find its price
-            const product = await Product.findById(productId);
-            // if product is found, reduce its qty
             cart.items[itemIndex].qty--;
             cart.items[itemIndex].price -= product.price;
             cart.totalQty--;
@@ -148,10 +155,16 @@ exports.reduceProductFromShoppingCart = async (req, res) => {
                 await Cart.findByIdAndRemove(cart._id);
             }
         }
-        res.redirect(req.headers.referer);
+        res.status(200).send({
+            totalQty: cart.totalQty,
+            productQty: itemIndex > -1 ? cart.items[itemIndex].qty : 1,
+            productPrice: product.price,
+            productTotalPrice: itemIndex > -1 ? cart.items[itemIndex].price : product.price,
+            cartTotalPrice: cart.totalCost
+        });
     } catch (err) {
         console.log(err.message);
-        res.redirect("/");
+        res.status(500).json({ message: err.message });
     }
 }
 
@@ -193,14 +206,17 @@ exports.emptyCart = async (req, res) => {
     try {
         if (req.user) {
             await Cart.findOneAndDelete({ user: req.user._id });
-        } 
+        }
         if (req.session.cart) {
             req.session.cart = null;
         }
-        res.redirect(req.headers.referer);
+        res.status(200).send({
+            message: "cart deleted successfully",
+            totalQty: 0
+        })
     } catch (err) {
         console.log(err.message);
-        res.redirect("/");
+        res.status(500).json({ message: err.message });
     }
 }
 
