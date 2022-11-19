@@ -135,7 +135,7 @@ exports.renderCreateNewProduct = async (req, res) => {
 
 exports.handleCreateNewProduct = async (req, res) => {
     try {
-        broadcast("The site manager added a new product");
+        broadcast("new product has been added to the shop!");
         twitterController.postTweet();
         const product = new Product({...req.body});
         await product.save();

@@ -73,12 +73,41 @@
     <% products.forEach((product) => { %>
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-index-box">
       <div class="single-product d-flex flex-column h-100">
-        <a
-          class="title-link"
-          href="/products/<%=product.category.slug%>/<%=product._id%>"
-        >
-          <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"
-        /></a>
+        <% if(product.video) { %>
+          <% if(product?.category?.title === "Laptops") { %>
+              <!-- width="auto" height="400px" -->
+              <video class="single-product d-flex flex-column h-100" controls>
+                <source src="/assets/videos/laptop.mp4" type="video/mp4" />
+              </video>
+          <% } %>
+          <% if(product?.category?.title === "Electronics") { %>
+            <video class="single-product d-flex flex-column h-100" class="player1" controls>
+              <source src="/assets/videos/electronic.mp4" type="video/mp4" />
+            </video>
+          <% } %>
+          <% if(product?.category?.title === "Totes" || product?.category?.title === "Suitcases" || product?.category?.title === "Large Handbags") { %>
+            <video class="single-product d-flex flex-column h-100" class="player1" controls>
+              <source src="/assets/videos/handbags.mp4" type="video/mp4" />
+            </video>
+          <% } %>
+          <% if(product?.category?.title === "Mini Bags") { %>
+            <video class="single-product d-flex flex-column h-100" class="player1" controls>
+              <source src="/assets/videos/Leather-Bag.mp4" type="video/mp4" />
+            </video>
+          <% } %>
+          <% if(product?.category?.title === "Office Supplies") { %>
+            <video class="single-product d-flex flex-column h-100" class="player1" controls>
+              <source src="/assets/videos/Office-supplies.mp4" type="video/mp4" />
+            </video>
+          <% } %>
+        <% } else { %>
+          <a class="title-link" href="/products/<%=product.category.slug%>/<%=product._id%>">
+            <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"
+          /></a>
+        <% } %>
+          <!-- <iframe width="381" height="320" src="<%=product.video%>" frameborder="0" allowfullscreen></iframe> -->
+          <!-- <a class="title-link" href="/products/<%=product.category.slug%>/<%=product._id%>">
+            <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"/> </a> -->
         <div class="product-info">
           <a
             class="title-link"
