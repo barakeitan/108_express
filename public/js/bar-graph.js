@@ -5,8 +5,8 @@ var margin = {top: 30, right: 30, bottom: 70, left: 60},
     height = barGraphHeight - margin.top - margin.bottom;
 
 var graphData;
-$.get("/user/admin/bar-data", (data, status) =>{graphData = data; console.log(data)});
-console.log(graphData);
+$.get("/user/admin/bar-data", (data, status) =>{graphData = data; });
+
 // append the svg object to the body of the page
 var svg = d3.select("#bar-svg")
     // .append("svg")
