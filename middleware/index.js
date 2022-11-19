@@ -16,7 +16,7 @@ middlewareObject.isLoggedIn = (req, res, next) => {
 };
 
 middlewareObject.isAdmin = (req, res, next) => {
-  if (res.locals.currentUser.userType === 'Admin') {
+  if (res.locals.isAdmin) {
     return next();
   }
   res.redirect("/");

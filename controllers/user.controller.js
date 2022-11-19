@@ -109,7 +109,7 @@ exports.handleLogOut = (req, res) => {
 }
 
 exports.renderAdminPage = async(req, res) => {
-    const orders = await Order.find({}).exec();
+    const orders = await Order.find({}).populate("user").exec();
 
     res.render("user/admin", {
         // csrfToken: req.csrfToken(),

@@ -12,7 +12,7 @@ exports.renderShopHomePage = async (req, res) => {
             .exec();
         const categories = await Category.find({ raw: true }).exec();
 
-        res.render("shop/home", { pageName: "Home", products, categories });
+        res.render("shop/home", { pageName: "Home", products, categories, isAdmin: res.locals.isAdmin });
     } catch (error) {
         console.log(error);
         res.redirect("/");
