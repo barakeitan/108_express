@@ -1,6 +1,8 @@
 const User = require('../models/user');
 const Order = require('../models/order');
 const Cart = require('../models/cart');
+const Product = require('../models/product');
+const Category = require('../models/category');
 
 exports.renderSignUp = (req, res) => {
     const errorMsg = req.flash("error")[0];
@@ -119,4 +121,63 @@ exports.renderAdminPage = async(req, res) => {
     });
 }
 
+exports.getBarGraphData = async(req, res) => {
+    const orders = await Order.find({}).exec();
+    var accepted = shipped = transit = delivered = 0;
+    for (let i = 0; i < orders.length; i++) {
+        switch (orders[i].status) {
+                case "Accepted":
+                    accepted = accepted + 1;
+                    break;
+                case "Shipped":
+                    shipped = shipped + 1;
+                    break;
+                case "In transit":
+                    transit = transit + 1;
+                    break;
+                case "Delivered":
+                    delivered = delivered + 1;
+                    break;
+                default:
+                    break;
+            }
+    }
+    var result =
+        [
+            {
+                'status' : "Accepted",
+                'value' : accepted
+            },
+            {
+                'status' : "Shipped",
+                'value' : shipped
+            },
+            {
+                'status' : "In transit",
+                'value' : transit
+            },
+            {
+                'status' : "Delivered",
+                'value' : delivered
+            }
+        ];
+    res.send(result);
+}
 
+exports.getScatterGraphData = async(req, res) => {
+    try {
+        // const products = await Product.find({ raw: true })
+        //     .sort("-createdAt")
+        //     .populate("category")
+        //     .exec();
+        var results = []
+        const categories = await Category.find({ raw: true }).exec();
+        for (let i = 0; i < categories.length; i++) {
+            results.push({"slug":categories[i].slug, "value":await Product.count({'category':categories[i]._id})});
+        }
+        res.status(200).json(results);
+    } catch (error) {
+        console.log(error);
+    }
+    return results;
+}
