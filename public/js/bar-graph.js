@@ -1,29 +1,34 @@
 // set the dimensions and margins of the graph
+const barGrapahWidth = 460, barGraphHeight = 400;
 var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    width = barGrapahWidth - margin.left - margin.right,
+    height = barGraphHeight - margin.top - margin.bottom;
 
+var graphData;
+$.get("/user/admin/bar-data", (data, status) =>{graphData = data; console.log(data)});
+console.log(graphData);
 // append the svg object to the body of the page
 var svg = d3.select("#bar-svg")
     // .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", barGrapahWidth)
+    .attr("height", barGraphHeight)
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data - Just testing !!
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
+d3.json(/*"../js/test.json"*/graphData, function(data) {
 
+  console.log("data : ", graphData)
   // sort data
-  data.sort(function(b, a) {
-    return a.Value - b.Value;
-  });
+  // data.sort(function(b, a) {
+  //   return a.Value - b.Value;
+  // });
 
   // X axis
   var x = d3.scaleBand()
     .range([ 0, width ])
-    .domain(data.map(function(d) { return d.Country; }))
+    .domain(graphData.map(function(d) { return d.status; }))
     .padding(0.2);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -34,20 +39,21 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 13000])
+    .domain([0, 12])
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
   // Bars
   svg.selectAll("mybar")
-    .data(data)
+    .data(graphData)
     .enter()
     .append("rect")
-      .attr("x", function(d) { return x(d.Country); })
-      .attr("y", function(d) { return y(d.Value); })
+      .attr("x", function(d) { return x(d.status); })
+      .attr("y", function(d) { return y(d.value); })
       .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d.Value); })
+      .attr("height", function(d) { return height - y(d.value); })
       .attr("fill", "#69b3a2")
-
+      .on("mouseover", function(){d3.select(this).style("fill", "orange");})
+      .on("mouseout", function(){d3.select(this).style("fill", "#69b3a2");})
 })
