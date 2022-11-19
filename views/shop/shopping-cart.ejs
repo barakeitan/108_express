@@ -1,99 +1,98 @@
 <%- include ("../partials/header") %>
- <%- include ("../partials/navbar") %>
+  <%- include ("../partials/navbar") %>
 
-<div class="container cart">
-  <% if (cart != null && !cart.paid ) { %>
-  <div class="row">
-    <div class="col-md-11 col-sm-12 m-auto table-responsive">
-      <table class="table text-center">
-        <thead>
-          <tr >
-            <th>Product</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>Quantity</th>
-            <th>&nbsp;</th>
-            <th>Total</th>
-            <th>Subtotal</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% products.forEach( product => { %> <% if(product != null) {%>
-          <tr class="my-auto">
-            <td>
-              <a class="product-index-box"
-              href="/products/<%=product.category.slug%>/<%=product._id%>"
-            >
-              <img src="<%=product.imagePath%>" class="img-small image-fluid" alt="image thumbnail" />
-              </a>
-            </td>
-            <td>
-              <div class="float-left mb-3">
-                <a class="title-link"
-                href="/products/<%=product.category.slug%>/<%=product._id%>"
-              >
-                <h6 class="text-left"><%= product.title %></h6> 
-                <p class="text-left">Product No: <%= product.productCode %></p>
-              </div>
-              
-              </a>
-            </td>
-            <td class="text-center">
-              <a href="/shop/add-to-cart/<%=product._id%>"
-                ><i class="fa fa-plus-square" aria-hidden="true"></i
-              > </a>
-            </td>
-            <td class="text-center">
-              <p class="qty-display pt-1">
-              <%= product.qty %>
-            </p>
-          </td>
-            <td class="text-center" >
-              <a href="/shop/reduce/<%=product._id%>"
-                ><i class="fa fa-minus-square" aria-hidden="true"></i
-              ></a>
-            </td>
-            <td>$<%= product.price %></td>
-            <td>$<%= product.totalPrice %></td>
-            <td>
-              <a
-                href="/shop/removeAll/<%=product._id%>"
-                class="btn btn-danger btn-sm button-style-danger"
-                >Remove all</a
-              >
-            </td>
-          </tr>
-          <% } %> <% }) %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-<hr>
-  <div class="row mt-4 mr-auto">
-    <div class="col-md-11 col-sm-12 m-auto">
-      <strong>Total: <span id="amount_checkout"><%= cart.totalCost %></span><span id="symbol"></span></strong>
-      <select name="currency-names" id="currency_checkout">
-        <option value="USD">USD</option>
-        <option value="ILS">ILS</option>
-        <option value="EUR">EUR</option>
-    </select>
-    </div>
-  </div>
-  <div class="row mt-2 mr-auto">
-    <div class="col-md-11 col-sm-12 m-auto">
-      <a href="/shop/checkout" class="btn btn-dark button-style">Checkout</a>
-      <a href="/shop/empty-cart" class="btn btn-primary button-style">Empty Cart</a>
-    </div>
-  </div>
-  <% } else { %>
-  <div class="row text-center">
-    <div class="col-md-9 col-sm-9 m-auto">
-      <h2>No items in the cart</h2>
-    </div>
-  </div>
+    <div id="cart-container" class="container cart">
+      <% if (cart !=null && !cart.paid ) { %>
+        <div class="row">
+          <div class="col-md-11 col-sm-12 m-auto table-responsive">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
+                  <th>Quantity</th>
+                  <th>&nbsp;</th>
+                  <th>Total</th>
+                  <th>Subtotal</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody id="table-products">
+                <% products.forEach( product=> { %> <% if(product !=null) {%>
+                    <tr class="my-auto">
+                      <td>
+                        <a class="product-index-box" href="/products/<%=product.category.slug%>/<%=product._id%>">
+                          <img src="<%=product.imagePath%>" class="img-small image-fluid" alt="image thumbnail" />
+                        </a>
+                      </td>
+                      <td>
+                        <div class="float-left mb-3">
+                          <a class="title-link" href="/products/<%=product.category.slug%>/<%=product._id%>">
+                            <h6 class="text-left">
+                              <%= product.title %>
+                            </h6>
+                            <p class="text-left">Product No: <%= product.productCode %>
+                            </p>
+                        </div>
 
-  <% } %>
-</div>
+                        </a>
+                      </td>
+                      <td class="text-center">
+                        <a onclick="addToQuantity(`<%=product._id%>`)"><i class="fa fa-plus-square"
+                            aria-hidden="true"></i> </a>
+                      </td>
+                      <td class="text-center">
+                        <p id="shoppingCart-productQty" class="qty-display pt-1">
+                          <%= product.qty %>
+                        </p>
+                      </td>
+                      <td class="text-center">
+                        <a onclick="reduceToQuantity(`<%=product._id%>`)"><i class="fa fa-minus-square"
+                            aria-hidden="true"></i></a>
+                      </td>
+                      <td id="shoppingCart-productTotalPrice">$<%= product.totalPrice %>
+                      </td>
+                      <td id="shoppingCart-productPrice">$<%= product.price %>
+                      </td>
+                      <td>
+                        <a class="btn btn-block btn-danger btn-sm button-style mt-auto mb-2"
+                          href="/shop/removeAll/<%=product?._id%>">Remove all</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                      <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <hr>
+        <div class="row mt-4 mr-auto">
+          <div class="col-md-11 col-sm-12 m-auto">
+            <strong>Total: <span id="amount_checkout">
+                <%= cart.totalCost %>
+              </span><span id="symbol"></span></strong>
+            <select name="currency-names" id="currency_checkout">
+              <option value="USD">USD</option>
+              <option value="ILS">ILS</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2 mr-auto">
+          <div class="col-md-11 col-sm-12 m-auto">
+            <a href="/shop/checkout" class="btn btn-dark button-style">Checkout</a>
+            <button class="btn btn-primary button-style" onclick="emptyCart()">Empty Cart</button>
+          </div>
+        </div>
+        <% } else { %>
+          <div class="row text-center">
+            <div class="col-md-9 col-sm-9 m-auto">
+              <h2>No items in the cart</h2>
+            </div>
+          </div>
 
-<%- include ("../partials/footer") %>
+          <% } %>
+    </div>
+
+    <%- include ("../partials/footer") %>

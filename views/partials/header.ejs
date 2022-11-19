@@ -7,13 +7,15 @@
         <%} else {%>
             <title>Shopping Cart</title>
             <% } %>
+            <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
                 <link href="/css/index.css" rel="stylesheet" />
                 <script src="https://code.jquery.com/jquery-3.5.1.js"
                     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                 <script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
-
+    
                 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
                     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
                     crossorigin="anonymous"></script>
@@ -32,6 +34,8 @@
                     crossorigin="anonymous"></script>
                 <script type="text/javascript" src="/../js/notification.js"></script>
                 <script type="text/javascript" src="/../js/currency.js"></script>
+                <script type="text/javascript" src="/../js/header.js"></script>
+                
 </head>
 
 <body>
@@ -59,11 +63,11 @@
                             <a href="/shop/shopping-cart">
                                 <i class="fas fa-shopping-cart"></i>
                                 <% if(session.cart) { %>
-                                    <span class="badge rounded-pill text-bg-secondary">
+                                    <span id="totalQtyCart" class="badge rounded-pill text-bg-secondary">
                                         <%= session.cart.totalQty %>
                                     </span>
                                     <% } else { %>
-                                        <span class="badge rounded-pill text-bg-secondary">0</span>
+                                        <span id="totalQtyCart" class="badge rounded-pill text-bg-secondary">0</span>
                                         <% } %>
                             </a>
                         </li>
