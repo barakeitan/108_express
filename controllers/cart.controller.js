@@ -195,14 +195,9 @@ exports.removeAllByProductId = async function (req, res, next) {
             req.session.cart = null;
             await Cart.findByIdAndRemove(cart._id);
         }
-        // res.status(200).send({
-        //     message: "deleted successfully",
-        //     totalQty: cart.totalQty
-        // })
         res.redirect(req.headers.referer);
     } catch (err) {
         console.log(err.message);
-        // res.status(500).json({ message: err.message });
         res.redirect("/");
     }
 }
@@ -215,7 +210,6 @@ exports.emptyCart = async (req, res) => {
         if (req.session.cart) {
             req.session.cart = null;
         }
-        // res.redirect(req.headers.referer);
         res.status(200).send({
             message: "cart deleted successfully",
             totalQty: 0
@@ -223,7 +217,6 @@ exports.emptyCart = async (req, res) => {
     } catch (err) {
         console.log(err.message);
         res.status(500).json({ message: err.message });
-        // res.redirect("/");
     }
 }
 
